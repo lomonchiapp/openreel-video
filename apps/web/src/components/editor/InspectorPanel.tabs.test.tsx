@@ -10,7 +10,10 @@ import { InspectorPanel } from "./InspectorPanel";
 const clipId = "clip-vid";
 const trackId = "track-vid";
 
-function seedVideoClip(): Project {
+function seedClip(opts: {
+  mediaId: string;
+  trackType: "video" | "audio" | "image";
+}): Project {
   const project = createEmptyProject("Inspector Tabs Test");
   const seeded: Project = {
     ...project,
@@ -20,12 +23,12 @@ function seedVideoClip(): Project {
       tracks: [
         {
           id: trackId,
-          type: "video",
-          name: "Video",
+          type: opts.trackType,
+          name: "Track",
           clips: [
             {
               id: clipId,
-              mediaId: "media-vid",
+              mediaId: opts.mediaId,
               trackId,
               startTime: 0,
               duration: 10,
@@ -61,7 +64,7 @@ function seedVideoClip(): Project {
 describe("InspectorPanel real tabs", () => {
   beforeEach(() => {
     useUIStore.setState({ inspectorActiveTab: "transform" });
-    seedVideoClip();
+    seedClip({ mediaId: "media-vid", trackType: "video" });
   });
 
   afterEach(() => {
@@ -95,5 +98,42 @@ describe("InspectorPanel real tabs", () => {
     fireEvent.click(screen.getByRole("tab", { name: /Audio/ }));
     expect(useUIStore.getState().inspectorActiveTab).toBe("audio");
     expect(screen.queryByText("Position X")).toBeNull();
+  });
+});
+
+describe("InspectorPanel tab sets per clip type", () => {
+  beforeEach(() => {
+    useUIStore.setState({ inspectorActiveTab: "transform" });
+  });
+
+  afterEach(() => {
+    cleanup();
+    useUIStore.getState().clearSelection();
+    useProjectStore.setState({ project: createEmptyProject("Reset") });
+  });
+
+  it("audio clip shows Audio + AI, no Speed or Transform", () => {
+    seedClip({ mediaId: "media-audio", trackType: "audio" });
+    render(<InspectorPanel />);
+    expect(screen.getByRole("tab", { name: /Audio/ })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /AI/ })).toBeInTheDocument();
+    expect(screen.queryByRole("tab", { name: /Speed/ })).toBeNull();
+    expect(screen.queryByRole("tab", { name: /Transform/ })).toBeNull();
+  });
+
+  it("image clip shows Speed + Color, no Audio", () => {
+    seedClip({ mediaId: "media-img", trackType: "image" });
+    render(<InspectorPanel />);
+    expect(screen.getByRole("tab", { name: /Speed/ })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /Color/ })).toBeInTheDocument();
+    expect(screen.queryByRole("tab", { name: /Audio/ })).toBeNull();
+  });
+
+  it("text clip shows Effects + Style, no AI", () => {
+    seedClip({ mediaId: "text-1", trackType: "video" });
+    render(<InspectorPanel />);
+    expect(screen.getByRole("tab", { name: /Effects/ })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /Style/ })).toBeInTheDocument();
+    expect(screen.queryByRole("tab", { name: /AI/ })).toBeNull();
   });
 });
