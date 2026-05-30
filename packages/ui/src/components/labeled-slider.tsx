@@ -19,6 +19,11 @@ const LabeledSlider = React.forwardRef<HTMLDivElement, LabeledSliderProps>(
     const displayValue = step < 1 ? value.toFixed(1) : Math.round(value)
     const [editing, setEditing] = React.useState(false)
     const [draft, setDraft] = React.useState("")
+    const clickTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null)
+    const enterEdit = () => {
+      setDraft(String(value))
+      setEditing(true)
+    }
 
     const clamp = (n: number) => Math.min(max, Math.max(min, n))
     const commit = () => {
@@ -50,14 +55,23 @@ const LabeledSlider = React.forwardRef<HTMLDivElement, LabeledSliderProps>(
               tabIndex={0}
               title={defaultValue !== undefined ? "Click to edit, double-click to reset" : "Click to edit"}
               onClick={() => {
-                setDraft(String(value))
-                setEditing(true)
+                if (defaultValue === undefined) {
+                  enterEdit()
+                  return
+                }
+                if (clickTimer.current) clearTimeout(clickTimer.current)
+                clickTimer.current = setTimeout(() => {
+                  enterEdit()
+                  clickTimer.current = null
+                }, 200)
               }}
               onDoubleClick={() => {
-                if (defaultValue !== undefined) {
-                  setEditing(false)
-                  onChange(defaultValue)
+                if (defaultValue === undefined) return
+                if (clickTimer.current) {
+                  clearTimeout(clickTimer.current)
+                  clickTimer.current = null
                 }
+                onChange(defaultValue)
               }}
               className="text-[10px] font-mono text-text-primary bg-background-tertiary px-1.5 py-0.5 rounded border border-border cursor-text select-none"
             >

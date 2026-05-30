@@ -39,12 +39,12 @@ export const TAB_DEFS: Record<InspectorTabId, InspectorTabDef> = {
 
 const TABS_BY_CLIP_TYPE: Record<InspectorClipType, InspectorTabId[]> = {
   video: ["transform", "color", "effects", "audio", "speed", "animate", "ai"],
-  image: ["transform", "color", "effects", "animate", "ai"],
-  audio: ["audio", "speed"],
-  text: ["transform", "style", "animate", "ai"],
-  shape: ["transform", "style", "animate", "ai"],
-  svg: ["transform", "style", "animate", "ai"],
-  sticker: ["transform", "style", "animate", "ai"],
+  image: ["transform", "color", "effects", "speed", "animate", "ai"],
+  audio: ["audio", "ai"],
+  text: ["transform", "style", "effects", "animate"],
+  shape: ["transform", "style", "effects", "animate"],
+  svg: ["transform", "style", "effects", "animate"],
+  sticker: ["transform", "effects", "animate"],
 };
 
 export function getTabIdsForClipType(

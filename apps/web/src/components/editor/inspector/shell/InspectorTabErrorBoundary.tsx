@@ -15,12 +15,6 @@ export class InspectorTabErrorBoundary extends React.Component<Props, State> {
     return { hasError: true };
   }
 
-  componentDidUpdate(prevProps: Props): void {
-    if (this.state.hasError && prevProps.children !== this.props.children) {
-      this.setState({ hasError: false });
-    }
-  }
-
   render(): React.ReactNode {
     if (this.state.hasError) {
       return (

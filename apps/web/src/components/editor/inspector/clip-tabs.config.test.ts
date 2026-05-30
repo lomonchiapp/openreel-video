@@ -8,20 +8,24 @@ describe("clip-tabs.config", () => {
     ]);
   });
 
-  it("image drops audio and speed", () => {
+  it("image has speed but no audio", () => {
     expect(getTabIdsForClipType("image")).toEqual([
-      "transform", "color", "effects", "animate", "ai",
+      "transform", "color", "effects", "speed", "animate", "ai",
     ]);
   });
 
-  it("audio clip shows only audio and speed", () => {
-    expect(getTabIdsForClipType("audio")).toEqual(["audio", "speed"]);
+  it("audio shows audio and ai", () => {
+    expect(getTabIdsForClipType("audio")).toEqual(["audio", "ai"]);
   });
 
-  it("text/shape/svg/sticker share transform/style/animate/ai", () => {
-    for (const t of ["text", "shape", "svg", "sticker"] as const) {
-      expect(getTabIdsForClipType(t)).toEqual(["transform", "style", "animate", "ai"]);
+  it("text/shape/svg share transform/style/effects/animate", () => {
+    for (const t of ["text", "shape", "svg"] as const) {
+      expect(getTabIdsForClipType(t)).toEqual(["transform", "style", "effects", "animate"]);
     }
+  });
+
+  it("sticker has transform/effects/animate (no style/ai)", () => {
+    expect(getTabIdsForClipType("sticker")).toEqual(["transform", "effects", "animate"]);
   });
 
   it("null clip type yields no tabs", () => {
