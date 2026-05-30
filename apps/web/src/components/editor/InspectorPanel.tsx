@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ChevronDown, Zap, Captions, Loader2, Sparkles, Trash2, Upload } from "lucide-react";
+import { Zap, Captions, Loader2, Sparkles, Trash2, Upload } from "lucide-react";
 import { useProjectStore } from "../../stores/project-store";
 import { useTimelineStore } from "../../stores/timeline-store";
 import { useUIStore } from "../../stores/ui-store";
@@ -21,33 +21,15 @@ import {
   GreenScreenSection,
   PiPSection,
   MaskSection,
-  ColorGradingSection,
-  AudioEffectsSection,
-  NoiseReductionSection,
-  TextSection,
-  TextAnimationSection,
-  ShapeSection,
-  SVGSection,
-  KeyframesSection,
   BlendingSection,
   Transform3DSection,
   MotionTrackingSection,
-  AudioDuckingSection,
   NestedSequenceSection,
   AdjustmentLayerSection,
-  ClipTransitionSection,
   BackgroundRemovalSection,
   AutoReframeSection,
-  AutoCutSilenceSection,
   CropSection,
-  SpeedSection,
-  StabilizationSection,
-  SpeedRampSection,
-  MotionPresetsPanel,
-  EmphasisAnimationSection,
-  MotionPathSection,
   ParticleEffectsSection,
-  AudioTextSyncPanel,
   AlignmentSection,
   BehindSubjectSection,
 } from "./inspector";
@@ -93,40 +75,17 @@ import { InspectorTabs } from "./inspector/shell/InspectorTabs";
 import { InspectorClipHeader } from "./inspector/shell/InspectorClipHeader";
 import { InspectorTabPanel } from "./inspector/shell/InspectorTabPanel";
 import { InspectorTabErrorBoundary } from "./inspector/shell/InspectorTabErrorBoundary";
+import { InspectorSection } from "./inspector/shell/InspectorSection";
+import { ColorTab } from "./inspector/tabs/ColorTab";
+import { AudioTab } from "./inspector/tabs/AudioTab";
+import { SpeedTab } from "./inspector/tabs/SpeedTab";
+import { AnimateTab } from "./inspector/tabs/AnimateTab";
+import { StyleTab } from "./inspector/tabs/StyleTab";
 
 // Initialize engines as singletons
 const chromaKeyEngine = new ChromaKeyEngine({ width: 1920, height: 1080 });
 
-const Section: React.FC<{
-  title: string;
-  defaultOpen?: boolean;
-  sectionId?: string;
-  children: React.ReactNode;
-}> = ({ title, defaultOpen = false, sectionId, children }) => {
-  const [isOpen, setIsOpen] = React.useState(defaultOpen);
-
-  return (
-    <div className="mb-6 transition-all" data-section-id={sectionId}>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors mb-3 w-full group"
-      >
-        <ChevronDown
-          size={12}
-          className={`transition-transform duration-200 ${
-            isOpen ? "" : "-rotate-90"
-          } text-text-muted group-hover:text-text-primary`}
-        />
-        <span className="text-xs font-medium">{title}</span>
-      </button>
-      {isOpen && (
-        <div className="animate-in slide-in-from-top-2 duration-200">
-          {children}
-        </div>
-      )}
-    </div>
-  );
-};
+const Section = InspectorSection;
 
 const EmptyState: React.FC = () => (
   <div className="flex-1 flex flex-col items-center justify-center p-8 text-center opacity-50">
@@ -1254,20 +1213,13 @@ export const InspectorPanel: React.FC = () => {
             </InspectorTabPanel>
 
             <InspectorTabPanel tab="audio" active={activeTab}>
-            {showAudioEffects && (
-              <Section title="Auto Cut Silence" sectionId="auto-cut-silence" defaultOpen={false}>
-                <AutoCutSilenceSection clipId={clipId} />
-              </Section>
-            )}
-            </InspectorTabPanel>
-
-            <InspectorTabPanel tab="audio" active={activeTab}>
-            {/* Beat Sync - Sync other clips to this audio's beats */}
-            {clipType === "audio" && (
-              <Section title="Beat Sync" sectionId="beat-sync" defaultOpen={false}>
-                <AudioTextSyncPanel clipId={clipId} />
-              </Section>
-            )}
+              <AudioTab
+                clipId={clipId}
+                clipType={clipType}
+                showAudioEffects={showAudioEffects}
+                noiseReductionSectionTitle={noiseReductionSectionTitle}
+                selectedNoiseReductionEffect={selectedNoiseReductionEffect}
+              />
             </InspectorTabPanel>
 
             <InspectorTabPanel tab="ai" active={activeTab}>
@@ -1438,60 +1390,10 @@ export const InspectorPanel: React.FC = () => {
             </InspectorTabPanel>
 
             <InspectorTabPanel tab="speed" active={activeTab}>
-            {/* Speed & Direction */}
-            {showVideoControls &&
-              selectedClip &&
-              !selectedClip.mediaId.startsWith("text-") &&
-              !selectedClip.mediaId.startsWith("shape-") &&
-              !selectedClip.mediaId.startsWith("svg-") &&
-              !selectedClip.mediaId.startsWith("sticker-") && (
-                <>
-                <div data-inspector-tab="speed" />
-                <Section
-                  title="Speed & Direction"
-                  sectionId="speed"
-                  defaultOpen={true}
-                >
-                  <SpeedSection clip={selectedClip as Clip} />
-                </Section>
-                </>
-              )}
-            </InspectorTabPanel>
-
-            <InspectorTabPanel tab="speed" active={activeTab}>
-            {/* Stabilization */}
-            {showVideoControls &&
-              selectedClip &&
-              !selectedClip.mediaId.startsWith("text-") &&
-              !selectedClip.mediaId.startsWith("shape-") &&
-              !selectedClip.mediaId.startsWith("svg-") &&
-              !selectedClip.mediaId.startsWith("sticker-") && (
-                <Section
-                  title="Stabilization"
-                  sectionId="stabilization"
-                  defaultOpen={false}
-                >
-                  <StabilizationSection clip={selectedClip as Clip} />
-                </Section>
-              )}
-            </InspectorTabPanel>
-
-            <InspectorTabPanel tab="speed" active={activeTab}>
-            {/* Speed Curves */}
-            {showVideoControls &&
-              selectedClip &&
-              !selectedClip.mediaId.startsWith("text-") &&
-              !selectedClip.mediaId.startsWith("shape-") &&
-              !selectedClip.mediaId.startsWith("svg-") &&
-              !selectedClip.mediaId.startsWith("sticker-") && (
-                <Section
-                  title="Speed Curves"
-                  sectionId="speed-curves"
-                  defaultOpen={false}
-                >
-                  <SpeedRampSection clip={selectedClip as Clip} />
-                </Section>
-              )}
+              <SpeedTab
+                showVideoControls={showVideoControls}
+                selectedClip={selectedClip}
+              />
             </InspectorTabPanel>
 
             <InspectorTabPanel tab="transform" active={activeTab}>
@@ -1549,64 +1451,11 @@ export const InspectorPanel: React.FC = () => {
             </InspectorTabPanel>
 
             <InspectorTabPanel tab="animate" active={activeTab}>
-            {/* Keyframes - Using KeyframeEngine */}
-            <div data-inspector-tab="animation" />
-            <Section title="Keyframes" sectionId="keyframes">
-              <KeyframesSection clipId={clipId} />
-            </Section>
-            </InspectorTabPanel>
-
-            <InspectorTabPanel tab="animate" active={activeTab}>
-            {/* Entry/Exit Transitions - For all visual clips */}
-            {(clipType === "video" ||
-              clipType === "image" ||
-              clipType === "text" ||
-              clipType === "shape" ||
-              clipType === "svg" ||
-              clipType === "sticker") && (
-              <Section
-                title="Transitions"
-                sectionId="transitions"
-                defaultOpen={false}
-              >
-                <ClipTransitionSection clipId={clipId} />
-              </Section>
-            )}
-            </InspectorTabPanel>
-
-            <InspectorTabPanel tab="animate" active={activeTab}>
-            {/* Motion Presets - Advanced animation presets */}
-            {(clipType === "video" ||
-              clipType === "image" ||
-              clipType === "shape" ||
-              clipType === "svg" ||
-              clipType === "sticker") && (
-              <Section
-                title="Motion Presets"
-                sectionId="motion-presets"
-                defaultOpen={false}
-              >
-                <MotionPresetsPanel clipId={clipId} />
-              </Section>
-            )}
-            </InspectorTabPanel>
-
-            <InspectorTabPanel tab="animate" active={activeTab}>
-            {/* Motion Path - Animate position along a path */}
-            {(clipType === "video" ||
-              clipType === "image" ||
-              clipType === "text" ||
-              clipType === "shape" ||
-              clipType === "svg" ||
-              clipType === "sticker") && (
-              <Section
-                title="Motion Path"
-                sectionId="motion-path"
-                defaultOpen={false}
-              >
-                <MotionPathSection clipId={clipId} />
-              </Section>
-            )}
+              <AnimateTab
+                clipId={clipId}
+                clipType={clipType}
+                showTextSection={showTextSection}
+              />
             </InspectorTabPanel>
 
             <InspectorTabPanel tab="effects" active={activeTab}>
@@ -1630,24 +1479,6 @@ export const InspectorPanel: React.FC = () => {
                   />
                 </Section>
               )}
-            </InspectorTabPanel>
-
-            <InspectorTabPanel tab="animate" active={activeTab}>
-            {/* Emphasis Animation - Looping animations while clip is visible */}
-            {(clipType === "video" ||
-              clipType === "image" ||
-              clipType === "text" ||
-              clipType === "shape" ||
-              clipType === "svg" ||
-              clipType === "sticker") && (
-              <Section
-                title="Emphasis Animation"
-                sectionId="emphasis-animation"
-                defaultOpen={false}
-              >
-                <EmphasisAnimationSection clipId={clipId} />
-              </Section>
-            )}
             </InspectorTabPanel>
 
             <InspectorTabPanel tab="effects" active={activeTab}>
@@ -1758,77 +1589,16 @@ export const InspectorPanel: React.FC = () => {
             </InspectorTabPanel>
 
             <InspectorTabPanel tab="color" active={activeTab}>
-            {showColorGrading && (
-              <>
-              <div data-inspector-tab="adjust" />
-              <Section
-                title="Color Grading"
-                sectionId="color-grading"
-                defaultOpen={false}
-              >
-                <ColorGradingSection clipId={clipId} />
-              </Section>
-              </>
-            )}
-            </InspectorTabPanel>
-
-            <InspectorTabPanel tab="audio" active={activeTab}>
-            {showAudioEffects && (
-              <Section
-                title={noiseReductionSectionTitle}
-                sectionId="background-noise-removal"
-                defaultOpen={Boolean(selectedNoiseReductionEffect)}
-              >
-                <NoiseReductionSection clipId={clipId} />
-              </Section>
-            )}
-            </InspectorTabPanel>
-
-            <InspectorTabPanel tab="audio" active={activeTab}>
-            {showAudioEffects && (
-              <>
-              <div data-inspector-tab="audio" />
-              <Section
-                title="Audio Effects"
-                sectionId="audio-effects"
-                defaultOpen={false}
-              >
-                <AudioEffectsSection clipId={clipId} />
-              </Section>
-              </>
-            )}
-            </InspectorTabPanel>
-
-            <InspectorTabPanel tab="audio" active={activeTab}>
-            {showAudioEffects && (
-              <Section
-                title="Audio Ducking"
-                sectionId="audio-ducking"
-                defaultOpen={false}
-              >
-                <AudioDuckingSection clipId={clipId} />
-              </Section>
-            )}
+              <ColorTab clipId={clipId} showColorGrading={showColorGrading} />
             </InspectorTabPanel>
 
             <InspectorTabPanel tab="style" active={activeTab}>
-            {showTextSection && (
-              <Section title="Text Properties" sectionId="text-properties">
-                <TextSection clipId={clipId} />
-              </Section>
-            )}
-            </InspectorTabPanel>
-
-            <InspectorTabPanel tab="animate" active={activeTab}>
-            {showTextSection && (
-              <Section
-                title="Text Animation"
-                sectionId="text-animation"
-                defaultOpen={false}
-              >
-                <TextAnimationSection clipId={clipId} />
-              </Section>
-            )}
+              <StyleTab
+                clipId={clipId}
+                showTextSection={showTextSection}
+                showShapeSection={showShapeSection}
+                showSVGSection={showSVGSection}
+              />
             </InspectorTabPanel>
 
             <InspectorTabPanel tab="effects" active={activeTab}>
@@ -1839,23 +1609,6 @@ export const InspectorPanel: React.FC = () => {
                 defaultOpen={false}
               >
                 <BehindSubjectSection clipId={clipId} />
-              </Section>
-            )}
-            </InspectorTabPanel>
-
-            <InspectorTabPanel tab="style" active={activeTab}>
-            {showShapeSection && (
-              <Section title="Shape Properties" sectionId="shape-properties">
-                <ShapeSection clipId={clipId} />
-              </Section>
-            )}
-            </InspectorTabPanel>
-
-            <InspectorTabPanel tab="style" active={activeTab}>
-            {/* SVG Section */}
-            {showSVGSection && (
-              <Section title="SVG Properties">
-                <SVGSection clipId={clipId} />
               </Section>
             )}
             </InspectorTabPanel>
