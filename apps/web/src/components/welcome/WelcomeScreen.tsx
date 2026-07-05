@@ -59,73 +59,15 @@ const FORMAT_OPTIONS: FormatOption[] = [
 ];
 
 const OpenReelLogo: React.FC<{ className?: string }> = ({ className = "" }) => (
-  <svg
-    viewBox="0 0 490 490"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={className}
-  >
-    <path
-      d="M245 24.5C123.223 24.5 24.5 123.223 24.5 245s98.723 220.5 220.5 220.5 220.5-98.723 220.5-220.5S366.777 24.5 245 24.5Z"
-      stroke="currentColor"
-      strokeWidth="30.625"
-    />
-    <g>
-      <path
-        d="M245 98v73.5"
-        stroke="currentColor"
-        strokeWidth="24.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M392 245h-73.5"
-        stroke="currentColor"
-        strokeWidth="24.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M245 392v-73.5"
-        stroke="currentColor"
-        strokeWidth="24.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M98 245h73.5"
-        stroke="currentColor"
-        strokeWidth="24.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="m348.941 141.059-51.965 51.965"
-        stroke="currentColor"
-        strokeWidth="24.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="m348.941 348.941-51.965-51.965"
-        stroke="currentColor"
-        strokeWidth="24.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="m141.059 348.941 51.965-51.965"
-        stroke="currentColor"
-        strokeWidth="24.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="m141.059 141.059 51.965 51.965"
-        stroke="currentColor"
-        strokeWidth="24.5"
-        strokeLinecap="round"
-      />
+  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <rect width="48" height="48" rx="10" fill="#FF3652" />
+    <g transform="rotate(22.5 24 24)">
+      <circle cx="9" cy="24" r="3.4" fill="#fff" />
+      <path d="M17.8 17.8 L30.2 30.2 M30.2 17.8 L17.8 30.2" stroke="#fff" strokeWidth="5.8" strokeLinecap="round" />
+      <circle cx="39" cy="24" r="3.4" fill="#fff" />
     </g>
-    <path
-      d="M294 245a49 49 0 0 1-49 49 49 49 0 0 1-49-49 49 49 0 0 1 98 0"
-      fill="currentColor"
-    />
   </svg>
-);
+)
 
 type ViewMode = "home" | "templates" | "recent";
 
@@ -253,8 +195,8 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
               <div className="w-12 h-12 text-primary">
                 <OpenReelLogo className="w-full h-full" />
               </div>
-              <span className="text-xl font-semibold text-text-primary tracking-tight">
-                Open Reel Video
+              <span className="text-xl text-text-primary" style={{ fontFamily: "'Syne', system-ui, sans-serif", fontWeight: 800, letterSpacing: "-0.02em" }}>
+                ixipost <span className="opacity-60">video</span>
               </span>
             </div>
 

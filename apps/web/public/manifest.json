@@ -1,11 +1,11 @@
 {
-  "name": "OpenReel",
-  "short_name": "OpenReel",
+  "name": "ixipost video",
+  "short_name": "ixipost video",
   "description": "Professional browser-based video, audio, and photo editing application",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",
-  "theme_color": "#3b82f6",
+  "theme_color": "#FF3652",
   "orientation": "landscape",
   "icons": [
     {
