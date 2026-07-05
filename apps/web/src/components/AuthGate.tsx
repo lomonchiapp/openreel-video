@@ -4,7 +4,9 @@ import React, { useEffect, useState } from "react";
 // contra ixipost.com (/api/me, CORS con credenciales — la cookie de sesión se
 // comparte entre subdominios). En desarrollo local no bloquea.
 
-const IXIPOST = "https://ixipost.com";
+// Canónico: el editor vive DENTRO del estudio (ixipost.com/video, same-origin:
+// la cookie de sesión llega sola, vieja o nueva). El subdominio solo redirige.
+const CANONICAL = "https://ixipost.com/video/";
 
 const Mark: React.FC<{ size?: number }> = ({ size = 56 }) => (
   <svg viewBox="0 0 48 48" width={size} height={size} fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,8 +26,13 @@ export const AuthGate: React.FC<{ children: React.ReactNode }> = ({ children }) 
 
   useEffect(() => {
     if (import.meta.env.DEV) return;
+    // Acceso directo por el subdominio → al canónico dentro del estudio
+    if (location.hostname === "video.ixipost.com") {
+      location.replace(CANONICAL);
+      return;
+    }
     let alive = true;
-    fetch(`${IXIPOST}/api/me`, { credentials: "include" })
+    fetch("/api/me", { credentials: "include" })
       .then((r) => { if (alive) setState(r.ok ? "ok" : "denied"); })
       .catch(() => { if (alive) setState("denied"); });
     return () => { alive = false; };
@@ -55,7 +62,7 @@ export const AuthGate: React.FC<{ children: React.ReactNode }> = ({ children }) 
             </p>
           </div>
           <div style={{ display: "flex", gap: 10 }}>
-            <a href={`${IXIPOST}/login`}
+            <a href="/login"
               style={{
                 background: "#FF3652", color: "#fff", textDecoration: "none",
                 padding: "12px 24px", borderRadius: 12, fontSize: 14, fontWeight: 600,

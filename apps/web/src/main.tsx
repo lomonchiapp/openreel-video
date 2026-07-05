@@ -4,6 +4,7 @@ import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import App from "./App";
 import { AuthGate } from "./components/AuthGate";
+import { applyIxiTheme } from "./services/ixi-theme";
 import "./index.css";
 import { registerServiceWorker } from "./services/service-worker";
 import { initCustomFonts } from "./components/editor/inspector/font-options";
@@ -25,6 +26,7 @@ registerServiceWorker().then((registration) => {
 });
 
 void initCustomFonts();
+applyIxiTheme(); // la Apariencia del estudio viste también este editor
 
 const root = document.getElementById("root")!;
 

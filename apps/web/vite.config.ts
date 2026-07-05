@@ -4,6 +4,10 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // Servida en ixipost.com/video vía rewrite (same-origin con el estudio:
+  // cookie de sesión y localStorage compartidos). El router es por hash,
+  // así que solo los assets necesitan el prefijo.
+  base: "/video/",
   plugins: [react()],
   assetsInclude: ["**/*.wasm"],
   resolve: {

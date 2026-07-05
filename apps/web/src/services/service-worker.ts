@@ -61,6 +61,7 @@ class ServiceWorkerManager {
     }
 
     try {
+      if (import.meta.env.BASE_URL !== "/") return null; // bajo /video no hay SW
       const registration = await navigator.serviceWorker.register("/sw.js", {
         scope: "/",
       });

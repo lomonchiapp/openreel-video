@@ -191,14 +191,14 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
       <div className="relative h-full flex flex-col items-center justify-center px-6">
         <div className="w-full max-w-3xl">
           <div className="flex flex-col items-center text-center mb-12">
-            <div className="flex items-center gap-3 mb-6">
+            <a href="/" title="Volver al estudio" className="flex items-center gap-3 mb-6 hover:opacity-85 transition-opacity">
               <div className="w-12 h-12 text-primary">
                 <OpenReelLogo className="w-full h-full" />
               </div>
               <span className="text-xl text-text-primary" style={{ fontFamily: "'Syne', system-ui, sans-serif", fontWeight: 800, letterSpacing: "-0.02em" }}>
                 ixipost <span className="opacity-60">video</span>
               </span>
-            </div>
+            </a>
 
             <h1 className="text-4xl sm:text-5xl font-bold text-text-primary tracking-tight mb-3">
               De la idea a la exportación.
