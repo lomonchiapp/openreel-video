@@ -10,6 +10,7 @@ import { useUIStore } from "./stores/ui-store";
 import { useProjectStore } from "./stores/project-store";
 import { useRouter } from "./hooks/use-router";
 import { useProjectRecovery } from "./hooks/useProjectRecovery";
+import { importPendingHandoff } from "./services/ixi-handoff";
 import { useKieAIPoller } from "./hooks/useKieAIPoller";
 import { SOCIAL_MEDIA_PRESETS, type SocialMediaCategory } from "@openreel/core";
 import { TooltipProvider } from "@openreel/ui";
@@ -89,6 +90,7 @@ function App() {
 
       createNewProject(projectName, { width, height, frameRate });
       navigate("editor");
+      void importPendingHandoff(); // video entregado por el estudio (si lo hay)
     } else if (route === "editor" && skipWelcomeScreen) {
       hasHandledInitialRoute.current = true;
     } else if (["welcome", "templates", "recent"].includes(route)) {
