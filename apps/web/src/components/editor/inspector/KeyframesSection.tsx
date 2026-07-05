@@ -37,24 +37,24 @@ interface AnimatableProperty {
 const ANIMATABLE_PROPERTIES: AnimatableProperty[] = [
   {
     id: "position.x",
-    label: "Position X",
-    category: "Transform",
+    label: "Posición X",
+    category: "Transformación",
     defaultValue: 0,
     min: -2000,
     max: 2000,
   },
   {
     id: "position.y",
-    label: "Position Y",
-    category: "Transform",
+    label: "Posición Y",
+    category: "Transformación",
     defaultValue: 0,
     min: -2000,
     max: 2000,
   },
   {
     id: "scale.x",
-    label: "Scale X",
-    category: "Transform",
+    label: "Escala X",
+    category: "Transformación",
     defaultValue: 1,
     min: 0,
     max: 10,
@@ -62,8 +62,8 @@ const ANIMATABLE_PROPERTIES: AnimatableProperty[] = [
   },
   {
     id: "scale.y",
-    label: "Scale Y",
-    category: "Transform",
+    label: "Escala Y",
+    category: "Transformación",
     defaultValue: 1,
     min: 0,
     max: 10,
@@ -71,16 +71,16 @@ const ANIMATABLE_PROPERTIES: AnimatableProperty[] = [
   },
   {
     id: "rotation",
-    label: "Rotation",
-    category: "Transform",
+    label: "Rotación",
+    category: "Transformación",
     defaultValue: 0,
     min: -360,
     max: 360,
   },
   {
     id: "opacity",
-    label: "Opacity",
-    category: "Transform",
+    label: "Opacidad",
+    category: "Transformación",
     defaultValue: 1,
     min: 0,
     max: 1,
@@ -89,16 +89,16 @@ const ANIMATABLE_PROPERTIES: AnimatableProperty[] = [
   // Effect parameters
   {
     id: "effect.brightness",
-    label: "Brightness",
-    category: "Effects",
+    label: "Brillo",
+    category: "Efectos",
     defaultValue: 0,
     min: -100,
     max: 100,
   },
   {
     id: "effect.contrast",
-    label: "Contrast",
-    category: "Effects",
+    label: "Contraste",
+    category: "Efectos",
     defaultValue: 1,
     min: 0,
     max: 2,
@@ -106,8 +106,8 @@ const ANIMATABLE_PROPERTIES: AnimatableProperty[] = [
   },
   {
     id: "effect.saturation",
-    label: "Saturation",
-    category: "Effects",
+    label: "Saturación",
+    category: "Efectos",
     defaultValue: 1,
     min: 0,
     max: 2,
@@ -115,15 +115,15 @@ const ANIMATABLE_PROPERTIES: AnimatableProperty[] = [
   },
   {
     id: "effect.blur",
-    label: "Blur",
-    category: "Effects",
+    label: "Desenfoque",
+    category: "Efectos",
     defaultValue: 0,
     min: 0,
     max: 100,
   },
   {
     id: "volume",
-    label: "Volume",
+    label: "Volumen",
     category: "Audio",
     defaultValue: 1,
     min: 0,
@@ -132,7 +132,7 @@ const ANIMATABLE_PROPERTIES: AnimatableProperty[] = [
   },
   {
     id: "pan",
-    label: "Pan",
+    label: "Paneo",
     category: "Audio",
     defaultValue: 0,
     min: -1,
@@ -162,7 +162,7 @@ const PropertySelector: React.FC<{
   const selectedLabel = selectedProperty
     ? ANIMATABLE_PROPERTIES.find((p) => p.id === selectedProperty)?.label ||
       selectedProperty
-    : "Select Property";
+    : "Seleccionar propiedad";
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -279,7 +279,7 @@ const EasingSelector: React.FC<{
         <button
           type="button"
           className="flex items-center gap-1.5 px-2 py-1 bg-background-tertiary border border-border rounded text-[9px] text-text-secondary hover:text-text-primary hover:border-primary/50 transition-colors"
-          title={`Easing: ${currentLabel}`}
+          title={`Suavizado: ${currentLabel}`}
         >
           <EasingCurvePreview easing={value} size={14} />
           <span>{currentLabel}</span>
@@ -363,7 +363,7 @@ const KeyframeItem: React.FC<{
       <button
         onClick={onDelete}
         className="p-1 hover:bg-red-500/20 rounded transition-colors text-text-muted hover:text-red-400"
-        title="Delete keyframe"
+        title="Eliminar fotograma clave"
       >
         <Trash2 size={12} />
       </button>
@@ -507,7 +507,7 @@ export const KeyframesSection: React.FC<KeyframesSectionProps> = ({
   if (!clip) {
     return (
       <div className="text-[10px] text-text-muted text-center py-4">
-        No clip selected
+        Ningún clip seleccionado
       </div>
     );
   }
@@ -516,7 +516,7 @@ export const KeyframesSection: React.FC<KeyframesSectionProps> = ({
     <div className="space-y-4">
       <div className="space-y-2">
         <label className="text-[10px] text-text-secondary font-medium">
-          Animate Property
+          Propiedad a animar
         </label>
         <PropertySelector
           selectedProperty={selectedProperty}
@@ -528,7 +528,7 @@ export const KeyframesSection: React.FC<KeyframesSectionProps> = ({
       {selectedProperty && (
         <div className="flex items-center justify-between p-2 bg-background-tertiary rounded-lg border border-border">
           <span className="text-[10px] text-text-secondary">
-            Value at {playheadPosition.toFixed(2)}s
+            Valor en {playheadPosition.toFixed(2)}s
           </span>
           <span className="text-[10px] font-mono text-text-primary">
             {typeof currentValue === "number"
@@ -551,12 +551,12 @@ export const KeyframesSection: React.FC<KeyframesSectionProps> = ({
           {hasKeyframeAtPlayhead ? (
             <>
               <Key size={12} />
-              Keyframe exists at {playheadPosition.toFixed(2)}s
+              Ya hay un fotograma clave en {playheadPosition.toFixed(2)}s
             </>
           ) : (
             <>
               <Plus size={12} />
-              Add Keyframe at {playheadPosition.toFixed(2)}s
+              Agregar fotograma clave en {playheadPosition.toFixed(2)}s
             </>
           )}
         </button>
@@ -566,7 +566,7 @@ export const KeyframesSection: React.FC<KeyframesSectionProps> = ({
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-[10px] text-text-secondary font-medium">
-              Keyframes ({propertyKeyframes.length})
+              Fotogramas clave ({propertyKeyframes.length})
             </span>
           </div>
           <div className="space-y-1.5 max-h-48 overflow-y-auto">
@@ -588,14 +588,14 @@ export const KeyframesSection: React.FC<KeyframesSectionProps> = ({
         <div className="text-center py-4">
           <Key size={24} className="mx-auto text-text-muted mb-2" />
           <p className="text-[10px] text-text-muted">
-            Select a property to animate
+            Selecciona una propiedad para animar
           </p>
         </div>
       )}
 
       {selectedProperty && propertyKeyframes.length === 0 && (
         <p className="text-[10px] text-text-muted text-center py-2">
-          No keyframes for this property. Add one to start animating.
+          No hay fotogramas clave para esta propiedad. Agrega uno para empezar a animar.
         </p>
       )}
     </div>

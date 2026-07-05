@@ -81,8 +81,8 @@ function formatKeyCombo(combo: {
 const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   {
     id: "playback.playPause",
-    name: "Play/Pause",
-    description: "Toggle playback",
+    name: "Reproducir/Pausa",
+    description: "Alternar reproducción",
     category: "playback",
     defaultKey: "space",
     currentKey: "space",
@@ -91,8 +91,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "playback.frameBack",
-    name: "Frame Back",
-    description: "Move back one frame",
+    name: "Fotograma atrás",
+    description: "Retroceder un fotograma",
     category: "playback",
     defaultKey: "arrowleft",
     currentKey: "arrowleft",
@@ -101,8 +101,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "playback.frameForward",
-    name: "Frame Forward",
-    description: "Move forward one frame",
+    name: "Fotograma adelante",
+    description: "Avanzar un fotograma",
     category: "playback",
     defaultKey: "arrowright",
     currentKey: "arrowright",
@@ -111,8 +111,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "playback.secondBack",
-    name: "Second Back",
-    description: "Move back one second",
+    name: "Segundo atrás",
+    description: "Retroceder un segundo",
     category: "playback",
     defaultKey: "shift+arrowleft",
     currentKey: "shift+arrowleft",
@@ -121,8 +121,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "playback.secondForward",
-    name: "Second Forward",
-    description: "Move forward one second",
+    name: "Segundo adelante",
+    description: "Avanzar un segundo",
     category: "playback",
     defaultKey: "shift+arrowright",
     currentKey: "shift+arrowright",
@@ -131,8 +131,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "playback.jump5Back",
-    name: "Jump 5s Back",
-    description: "Move back 5 seconds",
+    name: "Saltar 5 s atrás",
+    description: "Retroceder 5 segundos",
     category: "playback",
     defaultKey: "arrowup",
     currentKey: "arrowup",
@@ -141,8 +141,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "playback.jump5Forward",
-    name: "Jump 5s Forward",
-    description: "Move forward 5 seconds",
+    name: "Saltar 5 s adelante",
+    description: "Avanzar 5 segundos",
     category: "playback",
     defaultKey: "arrowdown",
     currentKey: "arrowdown",
@@ -151,8 +151,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "playback.goToStart",
-    name: "Go to Start",
-    description: "Jump to timeline start",
+    name: "Ir al inicio",
+    description: "Saltar al inicio de la línea de tiempo",
     category: "playback",
     defaultKey: "home",
     currentKey: "home",
@@ -161,8 +161,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "playback.goToEnd",
-    name: "Go to End",
-    description: "Jump to timeline end",
+    name: "Ir al final",
+    description: "Saltar al final de la línea de tiempo",
     category: "playback",
     defaultKey: "end",
     currentKey: "end",
@@ -171,8 +171,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "playback.prevClip",
-    name: "Previous Clip",
-    description: "Jump to previous clip edge",
+    name: "Clip anterior",
+    description: "Saltar al borde del clip anterior",
     category: "playback",
     defaultKey: "[",
     currentKey: "[",
@@ -181,8 +181,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "playback.nextClip",
-    name: "Next Clip",
-    description: "Jump to next clip edge",
+    name: "Clip siguiente",
+    description: "Saltar al borde del clip siguiente",
     category: "playback",
     defaultKey: "]",
     currentKey: "]",
@@ -191,8 +191,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "editing.undo",
-    name: "Undo",
-    description: "Undo last action",
+    name: "Deshacer",
+    description: "Deshacer la última acción",
     category: "editing",
     defaultKey: "cmd+z",
     currentKey: "cmd+z",
@@ -201,8 +201,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "editing.redo",
-    name: "Redo",
-    description: "Redo last undone action",
+    name: "Rehacer",
+    description: "Rehacer la última acción deshecha",
     category: "editing",
     defaultKey: "cmd+shift+z",
     currentKey: "cmd+shift+z",
@@ -211,8 +211,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "editing.cut",
-    name: "Cut",
-    description: "Cut selected clips",
+    name: "Cortar",
+    description: "Cortar los clips seleccionados",
     category: "editing",
     defaultKey: "cmd+x",
     currentKey: "cmd+x",
@@ -221,8 +221,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "editing.copy",
-    name: "Copy",
-    description: "Copy selected clips",
+    name: "Copiar",
+    description: "Copiar los clips seleccionados",
     category: "editing",
     defaultKey: "cmd+c",
     currentKey: "cmd+c",
@@ -231,8 +231,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "editing.paste",
-    name: "Paste",
-    description: "Paste clips at playhead",
+    name: "Pegar",
+    description: "Pegar clips en el cursor de reproducción",
     category: "editing",
     defaultKey: "cmd+v",
     currentKey: "cmd+v",
@@ -241,8 +241,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "editing.duplicate",
-    name: "Duplicate",
-    description: "Duplicate selected clip",
+    name: "Duplicar",
+    description: "Duplicar el clip seleccionado",
     category: "editing",
     defaultKey: "cmd+d",
     currentKey: "cmd+d",
@@ -251,8 +251,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "editing.delete",
-    name: "Delete",
-    description: "Delete selected clips",
+    name: "Eliminar",
+    description: "Eliminar los clips seleccionados",
     category: "editing",
     defaultKey: "delete",
     currentKey: "delete",
@@ -261,8 +261,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "editing.rippleDelete",
-    name: "Ripple Delete",
-    description: "Delete and close gap",
+    name: "Eliminar (ripple)",
+    description: "Eliminar y cerrar el hueco",
     category: "editing",
     defaultKey: "shift+delete",
     currentKey: "shift+delete",
@@ -271,8 +271,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "editing.split",
-    name: "Split",
-    description: "Split clip at playhead",
+    name: "Dividir",
+    description: "Dividir el clip en el cursor de reproducción",
     category: "editing",
     defaultKey: "s",
     currentKey: "s",
@@ -281,8 +281,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "editing.trimStart",
-    name: "Trim Start",
-    description: "Trim clip start to playhead",
+    name: "Recortar inicio",
+    description: "Recortar el inicio del clip hasta el cursor de reproducción",
     category: "editing",
     defaultKey: "q",
     currentKey: "q",
@@ -291,8 +291,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "editing.trimEnd",
-    name: "Trim End",
-    description: "Trim clip end to playhead",
+    name: "Recortar final",
+    description: "Recortar el final del clip hasta el cursor de reproducción",
     category: "editing",
     defaultKey: "w",
     currentKey: "w",
@@ -301,8 +301,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "selection.selectAll",
-    name: "Select All",
-    description: "Select all clips",
+    name: "Seleccionar todo",
+    description: "Seleccionar todos los clips",
     category: "selection",
     defaultKey: "cmd+a",
     currentKey: "cmd+a",
@@ -311,8 +311,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "selection.deselect",
-    name: "Deselect",
-    description: "Clear selection",
+    name: "Deseleccionar",
+    description: "Limpiar la selección",
     category: "selection",
     defaultKey: "escape",
     currentKey: "escape",
@@ -321,8 +321,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "timeline.toggleSnap",
-    name: "Toggle Snap",
-    description: "Toggle snapping",
+    name: "Alternar ajuste (snap)",
+    description: "Activar o desactivar el ajuste",
     category: "timeline",
     defaultKey: "n",
     currentKey: "n",
@@ -331,8 +331,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "timeline.zoomIn",
-    name: "Zoom In",
-    description: "Zoom in timeline",
+    name: "Acercar",
+    description: "Acercar la línea de tiempo",
     category: "timeline",
     defaultKey: "cmd+=",
     currentKey: "cmd+=",
@@ -341,8 +341,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "timeline.zoomOut",
-    name: "Zoom Out",
-    description: "Zoom out timeline",
+    name: "Alejar",
+    description: "Alejar la línea de tiempo",
     category: "timeline",
     defaultKey: "cmd+-",
     currentKey: "cmd+-",
@@ -351,8 +351,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "timeline.fitTimeline",
-    name: "Fit Timeline",
-    description: "Fit timeline to view",
+    name: "Ajustar línea de tiempo",
+    description: "Ajustar la línea de tiempo a la vista",
     category: "timeline",
     defaultKey: "cmd+0",
     currentKey: "cmd+0",
@@ -361,8 +361,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "view.showShortcuts",
-    name: "Show Shortcuts",
-    description: "Show keyboard shortcuts",
+    name: "Mostrar atajos",
+    description: "Mostrar los atajos de teclado",
     category: "view",
     defaultKey: "?",
     currentKey: "?",
@@ -371,8 +371,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "file.save",
-    name: "Save",
-    description: "Save project",
+    name: "Guardar",
+    description: "Guardar el proyecto",
     category: "file",
     defaultKey: "cmd+s",
     currentKey: "cmd+s",
@@ -381,8 +381,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "file.export",
-    name: "Export",
-    description: "Export video",
+    name: "Exportar",
+    description: "Exportar el video",
     category: "file",
     defaultKey: "cmd+e",
     currentKey: "cmd+e",
@@ -391,8 +391,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "tools.addText",
-    name: "Add Text",
-    description: "Add text clip",
+    name: "Agregar texto",
+    description: "Agregar un clip de texto",
     category: "tools",
     defaultKey: "t",
     currentKey: "t",
@@ -401,8 +401,8 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
   },
   {
     id: "tools.addMarker",
-    name: "Add Marker",
-    description: "Add marker at playhead",
+    name: "Agregar marcador",
+    description: "Agregar un marcador en el cursor de reproducción",
     category: "tools",
     defaultKey: "m",
     currentKey: "m",
@@ -414,14 +414,14 @@ const DEFAULT_SHORTCUTS: ShortcutDefinition[] = [
 const PRESETS: ShortcutPreset[] = [
   {
     id: "openreel",
-    name: "OpenReel Default",
-    description: "Default OpenReel shortcuts",
+    name: "OpenReel (predeterminado)",
+    description: "Atajos predeterminados de OpenReel",
     shortcuts: {},
   },
   {
     id: "capcut",
     name: "CapCut",
-    description: "CapCut-style shortcuts",
+    description: "Atajos al estilo CapCut",
     shortcuts: {
       "editing.split": "ctrl+b",
       "playback.playPause": "space",
@@ -431,7 +431,7 @@ const PRESETS: ShortcutPreset[] = [
   {
     id: "premiere",
     name: "Adobe Premiere",
-    description: "Premiere Pro-style shortcuts",
+    description: "Atajos al estilo Premiere Pro",
     shortcuts: {
       "editing.split": "cmd+k",
       "playback.playPause": "space",
@@ -443,7 +443,7 @@ const PRESETS: ShortcutPreset[] = [
   {
     id: "finalcut",
     name: "Final Cut Pro",
-    description: "Final Cut Pro-style shortcuts",
+    description: "Atajos al estilo Final Cut Pro",
     shortcuts: {
       "editing.split": "cmd+b",
       "playback.playPause": "space",
@@ -454,7 +454,7 @@ const PRESETS: ShortcutPreset[] = [
   {
     id: "davinci",
     name: "DaVinci Resolve",
-    description: "DaVinci Resolve-style shortcuts",
+    description: "Atajos al estilo DaVinci Resolve",
     shortcuts: {
       "editing.split": "cmd+\\",
       "playback.playPause": "space",
@@ -673,13 +673,13 @@ class KeyboardShortcutsManager {
 
   getCategoryName(category: ShortcutCategory): string {
     const names: Record<ShortcutCategory, string> = {
-      playback: "Playback",
-      editing: "Editing",
-      selection: "Selection",
-      timeline: "Timeline",
-      view: "View",
-      file: "File",
-      tools: "Tools",
+      playback: "Reproducción",
+      editing: "Edición",
+      selection: "Selección",
+      timeline: "Línea de tiempo",
+      view: "Vista",
+      file: "Archivo",
+      tools: "Herramientas",
     };
     return names[category];
   }

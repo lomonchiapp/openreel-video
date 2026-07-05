@@ -116,15 +116,15 @@ describe("InspectorPanel tab sets per clip type", () => {
     seedClip({ mediaId: "media-audio", trackType: "audio" });
     render(<InspectorPanel />);
     expect(screen.getByRole("tab", { name: /Audio/ })).toBeInTheDocument();
-    expect(screen.getByRole("tab", { name: /AI/ })).toBeInTheDocument();
-    expect(screen.queryByRole("tab", { name: /Speed/ })).toBeNull();
+    expect(screen.getByRole("tab", { name: /IA/ })).toBeInTheDocument();
+    expect(screen.queryByRole("tab", { name: /Velocidad/ })).toBeNull();
     expect(screen.queryByRole("tab", { name: /Transform/ })).toBeNull();
   });
 
   it("image clip shows Speed + Color, no Audio", () => {
     seedClip({ mediaId: "media-img", trackType: "image" });
     render(<InspectorPanel />);
-    expect(screen.getByRole("tab", { name: /Speed/ })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /Velocidad/ })).toBeInTheDocument();
     expect(screen.getByRole("tab", { name: /Color/ })).toBeInTheDocument();
     expect(screen.queryByRole("tab", { name: /Audio/ })).toBeNull();
   });
@@ -132,8 +132,8 @@ describe("InspectorPanel tab sets per clip type", () => {
   it("text clip shows Effects + Style, no AI", () => {
     seedClip({ mediaId: "text-1", trackType: "video" });
     render(<InspectorPanel />);
-    expect(screen.getByRole("tab", { name: /Effects/ })).toBeInTheDocument();
-    expect(screen.getByRole("tab", { name: /Style/ })).toBeInTheDocument();
-    expect(screen.queryByRole("tab", { name: /AI/ })).toBeNull();
+    expect(screen.getByRole("tab", { name: /Efectos/ })).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: /Estilo/ })).toBeInTheDocument();
+    expect(screen.queryByRole("tab", { name: /IA/ })).toBeNull();
   });
 });

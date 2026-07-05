@@ -175,7 +175,7 @@ export const SpeedSection: React.FC<SpeedSectionProps> = ({ clip }) => {
       </div>
 
       <div className="space-y-2">
-        <Label className="text-xs text-text-tertiary">Custom Speed</Label>
+        <Label className="text-xs text-text-tertiary">Velocidad personalizada</Label>
         <div className="flex gap-2">
           <Input
             type="number"
@@ -198,14 +198,14 @@ export const SpeedSection: React.FC<SpeedSectionProps> = ({ clip }) => {
           </span>
         </div>
         <p className="text-xs text-text-tertiary">
-          Range: 0.1× (slowest) to 100× (fastest)
+          Rango: 0.1× (más lento) a 100× (más rápido)
         </p>
       </div>
 
       {hasAudio() && (
         <div className="flex items-center justify-between p-3 rounded-lg bg-background-tertiary border border-border">
           <Label htmlFor="affect-audio" className="text-xs text-text-secondary">
-            Apply speed to audio
+            Aplicar velocidad al audio
           </Label>
           <Switch
             id="affect-audio"
@@ -224,7 +224,7 @@ export const SpeedSection: React.FC<SpeedSectionProps> = ({ clip }) => {
         }`}
       >
         <RotateCcw size={14} />
-        {isReversed ? "Reversed" : "Reverse Clip"}
+        {isReversed ? "Invertido" : "Invertir clip"}
       </button>
 
       {currentSpeed < 1 && (
@@ -233,7 +233,7 @@ export const SpeedSection: React.FC<SpeedSectionProps> = ({ clip }) => {
             <div className="flex items-center gap-2">
               <Sparkles size={14} className="text-primary" />
               <Label htmlFor="smooth-slowmo" className="text-xs text-text-secondary">
-                Smooth Slow Motion
+                Cámara lenta suave
               </Label>
             </div>
             <Switch
@@ -260,7 +260,7 @@ export const SpeedSection: React.FC<SpeedSectionProps> = ({ clip }) => {
           </div>
           {clip.smoothSlowMo && (
             <div className="space-y-1">
-              <Label className="text-xs text-text-tertiary">Quality</Label>
+              <Label className="text-xs text-text-tertiary">Calidad</Label>
               <Select
                 value={clip.interpolationQuality ?? "medium"}
                 onValueChange={(value: "low" | "medium" | "high") => {
@@ -285,13 +285,13 @@ export const SpeedSection: React.FC<SpeedSectionProps> = ({ clip }) => {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="low">Low (faster)</SelectItem>
-                  <SelectItem value="medium">Medium</SelectItem>
-                  <SelectItem value="high">High (slower)</SelectItem>
+                  <SelectItem value="low">Baja (más rápido)</SelectItem>
+                  <SelectItem value="medium">Media</SelectItem>
+                  <SelectItem value="high">Alta (más lento)</SelectItem>
                 </SelectContent>
               </Select>
               <p className="text-[10px] text-text-tertiary">
-                Uses optical flow to generate smooth in-between frames
+                Usa flujo óptico para generar fotogramas intermedios suaves
               </p>
             </div>
           )}
@@ -301,11 +301,11 @@ export const SpeedSection: React.FC<SpeedSectionProps> = ({ clip }) => {
       {(currentSpeed !== 1 || isReversed) && (
         <div className="p-3 rounded-lg bg-background-tertiary border border-border">
           <div className="text-xs text-text-tertiary mb-1">
-            Current Settings
+            Ajustes actuales
           </div>
           <div className="text-sm text-text-primary">
-            Speed: {currentSpeed}× {isReversed && "• Reversed"}
-            {clip.smoothSlowMo && " • Smooth"}
+            Velocidad: {currentSpeed}× {isReversed && "• Invertido"}
+            {clip.smoothSlowMo && " • Suave"}
           </div>
         </div>
       )}

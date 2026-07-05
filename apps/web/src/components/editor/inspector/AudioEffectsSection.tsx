@@ -397,12 +397,12 @@ export const AudioEffectsSection: React.FC<AudioEffectsSectionProps> = ({
       <div className="flex items-center gap-2 p-2 bg-background-tertiary rounded-lg">
         <Volume2 size={14} className="text-text-secondary" />
         <span className="text-[10px] text-text-secondary">
-          Audio clip: {clipId.substring(0, 8)}...
+          Clip de audio: {clipId.substring(0, 8)}...
         </span>
       </div>
 
       <SubSection
-        title="Equalizer"
+        title="Ecualizador"
         enabled={eqEnabled}
         onToggle={handleEqToggle}
         defaultOpen
@@ -420,13 +420,13 @@ export const AudioEffectsSection: React.FC<AudioEffectsSectionProps> = ({
       </SubSection>
 
       <SubSection
-        title="Compressor"
+        title="Compresor"
         enabled={compressorEnabled}
         onToggle={handleCompressorToggle}
       >
         <div className="space-y-2">
           <Slider
-            label="Threshold"
+            label="Umbral"
             value={compressor.threshold}
             onChange={(v) => handleCompressorChange("threshold", v)}
             min={-60}
@@ -434,7 +434,7 @@ export const AudioEffectsSection: React.FC<AudioEffectsSectionProps> = ({
             unit="dB"
           />
           <Slider
-            label="Ratio"
+            label="Relación"
             value={compressor.ratio}
             onChange={(v) => handleCompressorChange("ratio", v)}
             min={1}
@@ -443,7 +443,7 @@ export const AudioEffectsSection: React.FC<AudioEffectsSectionProps> = ({
             unit=":1"
           />
           <Slider
-            label="Attack"
+            label="Ataque"
             value={compressor.attack * 1000}
             onChange={(v) => handleCompressorChange("attack", v / 1000)}
             min={1}
@@ -452,7 +452,7 @@ export const AudioEffectsSection: React.FC<AudioEffectsSectionProps> = ({
             unit="ms"
           />
           <Slider
-            label="Release"
+            label="Liberación"
             value={compressor.release * 1000}
             onChange={(v) => handleCompressorChange("release", v / 1000)}
             min={10}
@@ -463,13 +463,13 @@ export const AudioEffectsSection: React.FC<AudioEffectsSectionProps> = ({
       </SubSection>
 
       <SubSection
-        title="Reverb"
+        title="Reverberación"
         enabled={reverbEnabled}
         onToggle={handleReverbToggle}
       >
         <div className="space-y-2">
           <Slider
-            label="Room Size"
+            label="Tamaño de sala"
             value={reverb.roomSize * 100}
             onChange={(v) => handleReverbChange("roomSize", v / 100)}
             min={0}
@@ -477,7 +477,7 @@ export const AudioEffectsSection: React.FC<AudioEffectsSectionProps> = ({
             unit="%"
           />
           <Slider
-            label="Damping"
+            label="Amortiguación"
             value={reverb.damping * 100}
             onChange={(v) => handleReverbChange("damping", v / 100)}
             min={0}
@@ -485,7 +485,7 @@ export const AudioEffectsSection: React.FC<AudioEffectsSectionProps> = ({
             unit="%"
           />
           <Slider
-            label="Wet/Dry"
+            label="Mezcla"
             value={reverb.wetLevel * 100}
             onChange={(v) => handleReverbChange("wetLevel", v / 100)}
             min={0}
@@ -496,13 +496,13 @@ export const AudioEffectsSection: React.FC<AudioEffectsSectionProps> = ({
       </SubSection>
 
       <SubSection
-        title="Delay"
+        title="Retardo"
         enabled={delayEnabled}
         onToggle={handleDelayToggle}
       >
         <div className="space-y-2">
           <Slider
-            label="Time"
+            label="Tiempo"
             value={delay.time * 1000}
             onChange={(v) => handleDelayChange("time", v / 1000)}
             min={1}
@@ -510,7 +510,7 @@ export const AudioEffectsSection: React.FC<AudioEffectsSectionProps> = ({
             unit="ms"
           />
           <Slider
-            label="Feedback"
+            label="Retroalimentación"
             value={delay.feedback * 100}
             onChange={(v) => handleDelayChange("feedback", v / 100)}
             min={0}
@@ -518,7 +518,7 @@ export const AudioEffectsSection: React.FC<AudioEffectsSectionProps> = ({
             unit="%"
           />
           <Slider
-            label="Wet Level"
+            label="Nivel de efecto"
             value={delay.wetLevel * 100}
             onChange={(v) => handleDelayChange("wetLevel", v / 100)}
             min={0}

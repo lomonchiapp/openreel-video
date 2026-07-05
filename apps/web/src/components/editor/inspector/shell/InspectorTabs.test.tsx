@@ -20,7 +20,7 @@ describe("InspectorTabs", () => {
   it("calls onSelect with the tab id on click", () => {
     const onSelect = vi.fn();
     render(<InspectorTabs tabs={tabs} activeId="transform" onSelect={onSelect} />);
-    fireEvent.click(screen.getByRole("tab", { name: /Effects/ }));
+    fireEvent.click(screen.getByRole("tab", { name: /Efectos/ }));
     expect(onSelect).toHaveBeenCalledWith("effects");
   });
 });

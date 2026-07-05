@@ -59,14 +59,14 @@ const StrokeStyleSelector: React.FC<{
   onChange: (dashArray: number[] | undefined) => void;
 }> = ({ value, onChange }) => {
   const styles = [
-    { value: undefined, label: "Solid", preview: "────" },
-    { value: [5, 5], label: "Dashed", preview: "- - -" },
-    { value: [2, 2], label: "Dotted", preview: "• • •" },
+    { value: undefined, label: "Sólido", preview: "────" },
+    { value: [5, 5], label: "Discontinuo", preview: "- - -" },
+    { value: [2, 2], label: "Punteado", preview: "• • •" },
   ];
 
   return (
     <div className="flex items-center justify-between">
-      <span className="text-[10px] text-text-secondary">Style</span>
+      <span className="text-[10px] text-text-secondary">Estilo</span>
       <div className="flex gap-1">
         {styles.map((style, index) => (
           <button
@@ -101,6 +101,17 @@ const ShapeTypeDisplay: React.FC<{
     arrow: <ArrowRight size={16} />,
   };
 
+  // Etiquetas visibles para tipos de forma (los valores internos no cambian)
+  const shapeLabels: Record<string, string> = {
+    rectangle: "rectángulo",
+    circle: "círculo",
+    ellipse: "elipse",
+    triangle: "triángulo",
+    star: "estrella",
+    polygon: "polígono",
+    arrow: "flecha",
+  };
+
   return (
     <div className="flex items-center gap-2 p-2 bg-background-tertiary rounded-lg">
       <div className="p-1.5 bg-background-secondary rounded">
@@ -108,9 +119,9 @@ const ShapeTypeDisplay: React.FC<{
       </div>
       <div>
         <span className="text-[10px] font-medium text-text-primary capitalize">
-          {shapeType}
+          {shapeLabels[shapeType] || shapeType}
         </span>
-        <p className="text-[9px] text-text-muted">Shape clip</p>
+        <p className="text-[9px] text-text-muted">Clip de forma</p>
       </div>
     </div>
   );
@@ -159,7 +170,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
     return (
       <div className="p-4 text-center">
         <Square size={24} className="mx-auto mb-2 text-text-muted" />
-        <p className="text-[10px] text-text-muted">No shape clip selected</p>
+        <p className="text-[10px] text-text-muted">Ninguna forma seleccionada</p>
       </div>
     );
   }
@@ -170,7 +181,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
 
       <div className="space-y-2 p-3 bg-background-tertiary rounded-lg">
         <span className="text-[10px] text-text-secondary font-medium">
-          Fill
+          Relleno
         </span>
         <ColorField
           label="Color"
@@ -187,7 +198,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
           }
         />
         <Slider
-          label="Opacity"
+          label="Opacidad"
           value={(style.fill?.opacity || 1) * 100}
           onChange={(opacity) =>
             handleStyleChange({
@@ -206,7 +217,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
 
       <div className="space-y-2 p-3 bg-background-tertiary rounded-lg">
         <span className="text-[10px] text-text-secondary font-medium">
-          Stroke
+          Borde
         </span>
         <ColorField
           label="Color"
@@ -223,7 +234,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
           }
         />
         <NumberInput
-          label="Width"
+          label="Grosor"
           value={style.stroke?.width || 0}
           onChange={(width) =>
             handleStyleChange({
@@ -258,10 +269,10 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
       {shapeType === "rectangle" && (
         <div className="space-y-2 p-3 bg-background-tertiary rounded-lg">
           <span className="text-[10px] text-text-secondary font-medium">
-            Corners
+            Esquinas
           </span>
           <Slider
-            label="Radius"
+            label="Radio"
             value={style.cornerRadius || 0}
             onChange={(cornerRadius) => handleStyleChange({ cornerRadius })}
             min={0}
@@ -273,7 +284,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
 
       <div className="space-y-2 p-3 bg-background-tertiary rounded-lg">
         <span className="text-[10px] text-text-secondary font-medium">
-          Shadow
+          Sombra
         </span>
         <ColorField
           label="Color"
@@ -291,7 +302,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
           showAlpha
         />
         <NumberInput
-          label="Offset X"
+          label="Desplazamiento X"
           value={style.shadow?.offsetX || 0}
           onChange={(offsetX) =>
             handleStyleChange({
@@ -308,7 +319,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
           unit="px"
         />
         <NumberInput
-          label="Offset Y"
+          label="Desplazamiento Y"
           value={style.shadow?.offsetY || 0}
           onChange={(offsetY) =>
             handleStyleChange({
@@ -325,7 +336,7 @@ export const ShapeSection: React.FC<ShapeSectionProps> = ({ clipId }) => {
           unit="px"
         />
         <Slider
-          label="Blur"
+          label="Desenfoque"
           value={style.shadow?.blur || 0}
           onChange={(blur) =>
             handleStyleChange({

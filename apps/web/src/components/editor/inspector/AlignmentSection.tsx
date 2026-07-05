@@ -57,21 +57,21 @@ export const AlignmentSection: React.FC<AlignmentSectionProps> = ({
           <button
             className={buttonClass}
             onClick={() => handleAlign("x", 0)}
-            title="Align Left"
+            title="Alinear a la izquierda"
           >
             <AlignHorizontalJustifyStart size={14} />
           </button>
           <button
             className={buttonClass}
             onClick={() => handleAlign("x", 0.5)}
-            title="Center Horizontally"
+            title="Centrar horizontalmente"
           >
             <AlignHorizontalJustifyCenter size={14} />
           </button>
           <button
             className={buttonClass}
             onClick={() => handleAlign("x", 1)}
-            title="Align Right"
+            title="Alinear a la derecha"
           >
             <AlignHorizontalJustifyEnd size={14} />
           </button>
@@ -83,21 +83,21 @@ export const AlignmentSection: React.FC<AlignmentSectionProps> = ({
           <button
             className={buttonClass}
             onClick={() => handleAlign("y", 0)}
-            title="Align Top"
+            title="Alinear arriba"
           >
             <AlignVerticalJustifyStart size={14} />
           </button>
           <button
             className={buttonClass}
             onClick={() => handleAlign("y", 0.5)}
-            title="Center Vertically"
+            title="Centrar verticalmente"
           >
             <AlignVerticalJustifyCenter size={14} />
           </button>
           <button
             className={buttonClass}
             onClick={() => handleAlign("y", 1)}
-            title="Align Bottom"
+            title="Alinear abajo"
           >
             <AlignVerticalJustifyEnd size={14} />
           </button>
@@ -106,9 +106,9 @@ export const AlignmentSection: React.FC<AlignmentSectionProps> = ({
       <button
         className="w-full py-1.5 text-[10px] rounded-md bg-background-tertiary border border-border hover:border-primary/50 hover:bg-primary/5 transition-all text-text-secondary hover:text-primary"
         onClick={handleCenterBoth}
-        title="Center on Canvas"
+        title="Centrar en el lienzo"
       >
-        Center on Canvas
+        Centrar en el lienzo
       </button>
     </div>
   );

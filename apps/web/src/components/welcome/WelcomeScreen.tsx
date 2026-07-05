@@ -50,7 +50,7 @@ const FORMAT_OPTIONS: FormatOption[] = [
   {
     id: "square",
     preset: "instagram-post",
-    label: "Square",
+    label: "Cuadrado",
     description: "Instagram, Facebook",
     dimensions: "1080 × 1080",
     icon: Square,
@@ -92,7 +92,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
   const handleCreateProject = useCallback(
     (option: FormatOption) => {
       const preset = SOCIAL_MEDIA_PRESETS[option.preset];
-      createNewProject(`New ${option.label} Video`, {
+      createNewProject(`Video ${option.label.toLowerCase()} nuevo`, {
         width: preset.width,
         height: preset.height,
         frameRate: preset.frameRate,
@@ -147,9 +147,9 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
             onClick={() => setViewMode("home")}
           >
             <ArrowRight className="rotate-180" size={16} />
-            Back
+            Volver
           </Button>
-          <h2 className="text-sm font-medium text-text-primary">Templates</h2>
+          <h2 className="text-sm font-medium text-text-primary">Plantillas</h2>
           <div className="w-16" />
         </header>
         <div className="flex-1 overflow-y-auto p-6">
@@ -169,10 +169,10 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
             onClick={() => setViewMode("home")}
           >
             <ArrowRight className="rotate-180" size={16} />
-            Back
+            Volver
           </Button>
           <h2 className="text-sm font-medium text-text-primary">
-            Recent Projects
+            Proyectos recientes
           </h2>
           <div className="w-16" />
         </header>
@@ -201,13 +201,13 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
             </div>
 
             <h1 className="text-4xl sm:text-5xl font-bold text-text-primary tracking-tight mb-3">
-              From idea to export.
+              De la idea a la exportación.
             </h1>
             <p className="text-xl text-text-secondary mb-8">
-              In your browser.
+              En tu navegador.
             </p>
             <p className="text-base text-text-muted max-w-md">
-              Pick a format and start creating. You can change this anytime.
+              Elige un formato y empieza a crear. Puedes cambiarlo cuando quieras.
             </p>
           </div>
 
@@ -270,7 +270,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
                     transition-all duration-200
                   `}
                   >
-                    Start creating
+                    Empezar a crear
                     <ArrowRight size={14} />
                   </div>
                 </button>
@@ -285,7 +285,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
               className="rounded-xl"
             >
               <Layers size={16} />
-              Browse templates
+              Ver plantillas
             </Button>
             <Button
               variant="outline"
@@ -293,7 +293,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
               className="rounded-xl"
             >
               <Clock size={16} />
-              Recent projects
+              Proyectos recientes
             </Button>
             <Button
               variant="outline"
@@ -301,7 +301,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
               className="rounded-xl"
             >
               <FolderOpen size={16} />
-              Open editor
+              Abrir editor
             </Button>
           </div>
         </div>
@@ -317,18 +317,18 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ initialTab }) => {
               htmlFor="skip-welcome"
               className="text-xs text-text-muted cursor-pointer"
             >
-              Skip on startup
+              Omitir al iniciar
             </Label>
           </div>
 
           <span className="text-text-muted/30">·</span>
 
           <p className="text-xs text-text-muted/60">
-            Press{" "}
+            Presiona{" "}
             <kbd className="px-1.5 py-0.5 bg-background-tertiary border border-border rounded text-text-muted font-mono text-[10px]">
               Esc
             </kbd>{" "}
-            to skip
+            para omitir
           </p>
         </div>
       </div>

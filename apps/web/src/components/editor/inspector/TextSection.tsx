@@ -107,7 +107,7 @@ const FontSelector: React.FC<{
   const customFonts = useCustomFonts();
   return (
     <div className="flex items-center justify-between">
-      <span className="text-[10px] text-text-secondary">Font</span>
+      <span className="text-[10px] text-text-secondary">Fuente</span>
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger className="max-w-[140px] bg-background-tertiary border-border text-text-primary text-[10px]">
           <SelectValue />
@@ -128,7 +128,7 @@ const FontSelector: React.FC<{
           {customFonts.length > 0 && (
             <SelectGroup>
               <SelectLabel className="text-text-muted text-[10px] font-medium">
-                Custom Uploads
+                Fuentes personalizadas
               </SelectLabel>
               {customFonts.map((font) => (
                 <SelectItem key={font} value={font} style={{ fontFamily: font }}>
@@ -233,10 +233,10 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
 
       const result = await registerCustomFont(file);
       if (!result.success) {
-        toast.error("Font upload failed", result.error ?? "Unknown error.");
+        toast.error("Error al subir la fuente", result.error ?? "Error desconocido.");
       } else {
         await handleStyleChange({ fontFamily: result.fontFamily });
-        toast.success("Custom font uploaded", `${result.fontFamily} is ready to use.`);
+        toast.success("Fuente personalizada subida", `${result.fontFamily} está lista para usar.`);
       }
 
       event.target.value = "";
@@ -248,7 +248,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
     return (
       <div className="p-4 text-center">
         <Type size={24} className="mx-auto mb-2 text-text-muted" />
-        <p className="text-[10px] text-text-muted">No text clip selected</p>
+        <p className="text-[10px] text-text-muted">Ningún clip de texto seleccionado</p>
       </div>
     );
   }
@@ -256,11 +256,11 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
   return (
     <div className="space-y-4">
       <div className="space-y-2">
-        <span className="text-[10px] text-text-secondary">Text Content</span>
+        <span className="text-[10px] text-text-secondary">Contenido de texto</span>
         <textarea
           value={text}
           onChange={(e) => handleTextChange(e.target.value)}
-          placeholder="Enter text..."
+          placeholder="Escribe el texto..."
           className="w-full h-20 px-3 py-2 text-sm text-text-primary bg-background-tertiary border border-border rounded-lg resize-none outline-none focus:border-primary"
           style={{ fontFamily: style.fontFamily }}
         />
@@ -283,10 +283,10 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
           className="w-full py-1.5 px-2 bg-background-secondary border border-border rounded text-[10px] text-text-secondary hover:text-text-primary transition-colors flex items-center justify-center gap-1.5"
         >
           <Upload size={11} />
-          Upload Custom Font
+          Subir fuente personalizada
         </button>
         <NumberInput
-          label="Size"
+          label="Tamaño"
           value={style.fontSize}
           onChange={(fontSize) => handleStyleChange({ fontSize })}
           min={8}
@@ -294,7 +294,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
           unit="px"
         />
         <div className="flex items-center justify-between">
-          <span className="text-[10px] text-text-secondary">Style</span>
+          <span className="text-[10px] text-text-secondary">Estilo</span>
           <div className="flex gap-1">
             <button
               onClick={() =>
@@ -307,7 +307,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
                   ? "bg-primary text-white"
                   : "bg-background-secondary border border-border text-text-secondary hover:text-text-primary"
               }`}
-              title="Bold"
+              title="Negrita"
             >
               <Bold size={12} />
             </button>
@@ -322,7 +322,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
                   ? "bg-primary text-white"
                   : "bg-background-secondary border border-border text-text-secondary hover:text-text-primary"
               }`}
-              title="Italic"
+              title="Cursiva"
             >
               <Italic size={12} />
             </button>
@@ -338,7 +338,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
                   ? "bg-primary text-white"
                   : "bg-background-secondary border border-border text-text-secondary hover:text-text-primary"
               }`}
-              title="Underline"
+              title="Subrayado"
             >
               <Underline size={12} />
             </button>
@@ -347,16 +347,16 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
       </div>
 
       <div className="flex items-center justify-between">
-        <span className="text-[10px] text-text-secondary">Text Align</span>
+        <span className="text-[10px] text-text-secondary">Alineación</span>
         <ToggleButtonGroup
           options={[
-            { value: "left", icon: <AlignLeft size={12} />, label: "Left" },
+            { value: "left", icon: <AlignLeft size={12} />, label: "Izquierda" },
             {
               value: "center",
               icon: <AlignCenter size={12} />,
-              label: "Center",
+              label: "Centro",
             },
-            { value: "right", icon: <AlignRight size={12} />, label: "Right" },
+            { value: "right", icon: <AlignRight size={12} />, label: "Derecha" },
           ]}
           value={style.textAlign}
           onChange={(textAlign) =>
@@ -369,29 +369,29 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
 
       <div className="space-y-2 p-3 bg-background-tertiary rounded-lg">
         <span className="text-[10px] text-text-secondary font-medium">
-          Position on Canvas
+          Posición en el lienzo
         </span>
         <div className="flex items-center justify-between">
-          <span className="text-[10px] text-text-muted">Align to Canvas</span>
+          <span className="text-[10px] text-text-muted">Alinear al lienzo</span>
           <div className="flex gap-1">
             <button
               onClick={handleCenterHorizontal}
               className="p-1.5 rounded bg-background-secondary border border-border text-text-secondary hover:text-text-primary transition-colors"
-              title="Center Horizontally"
+              title="Centrar horizontalmente"
             >
               <AlignHorizontalJustifyCenter size={12} />
             </button>
             <button
               onClick={handleCenterVertical}
               className="p-1.5 rounded bg-background-secondary border border-border text-text-secondary hover:text-text-primary transition-colors"
-              title="Center Vertically"
+              title="Centrar verticalmente"
             >
               <AlignVerticalJustifyCenter size={12} />
             </button>
             <button
               onClick={handleCenterBoth}
               className="p-1.5 rounded bg-primary text-white transition-colors"
-              title="Center Both"
+              title="Centrar en ambos ejes"
             >
               <Crosshair size={12} />
             </button>
@@ -401,12 +401,12 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
 
       <div className="space-y-2 p-3 bg-background-tertiary rounded-lg">
         <ColorField
-          label="Text Color"
+          label="Color del texto"
           value={style.color}
           onChange={(color) => handleStyleChange({ color })}
         />
         <ColorField
-          label="Background"
+          label="Fondo"
           value={style.backgroundColor || "transparent"}
           onChange={(backgroundColor) => handleStyleChange({ backgroundColor })}
           showAlpha
@@ -416,7 +416,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
 
       <div className="space-y-2 p-3 bg-background-tertiary rounded-lg">
         <span className="text-[10px] text-text-secondary font-medium">
-          Stroke
+          Borde
         </span>
         <ColorField
           label="Color"
@@ -424,7 +424,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
           onChange={(strokeColor) => handleStyleChange({ strokeColor })}
         />
         <NumberInput
-          label="Width"
+          label="Grosor"
           value={style.strokeWidth || 0}
           onChange={(strokeWidth) => handleStyleChange({ strokeWidth })}
           min={0}
@@ -435,7 +435,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
 
       <div className="space-y-2 p-3 bg-background-tertiary rounded-lg">
         <span className="text-[10px] text-text-secondary font-medium">
-          Shadow
+          Sombra
         </span>
         <ColorField
           label="Color"
@@ -444,7 +444,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
           showAlpha
         />
         <NumberInput
-          label="Offset X"
+          label="Desplazamiento X"
           value={style.shadowOffsetX || 0}
           onChange={(shadowOffsetX) => handleStyleChange({ shadowOffsetX })}
           min={-50}
@@ -452,7 +452,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
           unit="px"
         />
         <NumberInput
-          label="Offset Y"
+          label="Desplazamiento Y"
           value={style.shadowOffsetY || 0}
           onChange={(shadowOffsetY) => handleStyleChange({ shadowOffsetY })}
           min={-50}
@@ -460,7 +460,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
           unit="px"
         />
         <NumberInput
-          label="Blur"
+          label="Desenfoque"
           value={style.shadowBlur || 0}
           onChange={(shadowBlur) => handleStyleChange({ shadowBlur })}
           min={0}
@@ -471,7 +471,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
 
       <div className="space-y-2 p-3 bg-background-tertiary rounded-lg">
         <NumberInput
-          label="Line Height"
+          label="Interlineado"
           value={style.lineHeight || 1.2}
           onChange={(lineHeight) => handleStyleChange({ lineHeight })}
           min={0.5}
@@ -479,7 +479,7 @@ export const TextSection: React.FC<TextSectionProps> = ({ clipId }) => {
           step={0.1}
         />
         <NumberInput
-          label="Letter Spacing"
+          label="Espaciado de letras"
           value={style.letterSpacing || 0}
           onChange={(letterSpacing) => handleStyleChange({ letterSpacing })}
           min={-10}
@@ -508,6 +508,12 @@ type Text3DDefaults = {
   material: "basic" | "physical";
   metalness: number;
   roughness: number;
+};
+
+// Etiquetas visibles para materiales 3D (los valores internos no cambian)
+const MATERIAL_LABELS: Record<"basic" | "physical", string> = {
+  basic: "básico",
+  physical: "físico",
 };
 
 const DEFAULT_TEXT_3D: Text3DDefaults = {
@@ -543,7 +549,7 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId }) => {
     <div className="space-y-2 p-3 bg-background-tertiary rounded-lg">
       <div className="flex items-center justify-between">
         <span className="text-[10px] text-text-primary font-medium">
-          3D Text
+          Texto 3D
         </span>
         <button
           onClick={() => {
@@ -565,13 +571,13 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId }) => {
               : "bg-background-tertiary border-border text-text-secondary hover:border-primary/50"
           }`}
         >
-          {enabled ? "On" : "Off"}
+          {enabled ? "Activado" : "Desactivado"}
         </button>
       </div>
       {enabled && (
         <>
           <NumberInput
-            label="Depth"
+            label="Profundidad"
             value={text3d?.depth ?? DEFAULT_TEXT_3D.depth}
             onChange={(depth) => apply({ depth })}
             min={1}
@@ -580,7 +586,7 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId }) => {
             unit="px"
           />
           <NumberInput
-            label="Bevel Thickness"
+            label="Grosor del bisel"
             value={text3d?.bevelThickness ?? DEFAULT_TEXT_3D.bevelThickness}
             onChange={(bevelThickness) => apply({ bevelThickness })}
             min={0}
@@ -588,7 +594,7 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId }) => {
             step={0.1}
           />
           <NumberInput
-            label="Bevel Size"
+            label="Tamaño del bisel"
             value={text3d?.bevelSize ?? DEFAULT_TEXT_3D.bevelSize}
             onChange={(bevelSize) => apply({ bevelSize })}
             min={0}
@@ -596,7 +602,7 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId }) => {
             step={0.1}
           />
           <NumberInput
-            label="Bevel Segments"
+            label="Segmentos del bisel"
             value={text3d?.bevelSegments ?? DEFAULT_TEXT_3D.bevelSegments}
             onChange={(bevelSegments) => apply({ bevelSegments: Math.max(1, Math.round(bevelSegments)) })}
             min={1}
@@ -616,7 +622,7 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId }) => {
                       : "bg-background-tertiary border-border text-text-secondary hover:border-primary/50"
                   }`}
                 >
-                  {m}
+                  {MATERIAL_LABELS[m]}
                 </button>
               ))}
             </div>
@@ -624,7 +630,7 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId }) => {
           {(text3d?.material ?? "physical") === "physical" && (
             <>
               <NumberInput
-                label="Metalness"
+                label="Metalizado"
                 value={text3d?.metalness ?? DEFAULT_TEXT_3D.metalness}
                 onChange={(metalness) => apply({ metalness: Math.max(0, Math.min(1, metalness)) })}
                 min={0}
@@ -632,7 +638,7 @@ const Text3DControls: React.FC<Text3DControlsProps> = ({ clipId }) => {
                 step={0.05}
               />
               <NumberInput
-                label="Roughness"
+                label="Rugosidad"
                 value={text3d?.roughness ?? DEFAULT_TEXT_3D.roughness}
                 onChange={(roughness) => apply({ roughness: Math.max(0, Math.min(1, roughness)) })}
                 min={0}

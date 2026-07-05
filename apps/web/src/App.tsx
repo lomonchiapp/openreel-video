@@ -52,7 +52,7 @@ function App() {
     if (route === "new") {
       hasHandledInitialRoute.current = true;
 
-      let projectName = "New Project";
+      let projectName = "Proyecto nuevo";
       let width = 1920;
       let height = 1080;
       let frameRate = fps;
@@ -79,11 +79,11 @@ function App() {
 
         const aspectRatio = width / height;
         if (aspectRatio < 1) {
-          projectName = "New Vertical Video";
+          projectName = "Video vertical nuevo";
         } else if (aspectRatio > 1) {
-          projectName = "New Horizontal Video";
+          projectName = "Video horizontal nuevo";
         } else {
-          projectName = "New Square Video";
+          projectName = "Video cuadrado nuevo";
         }
       }
 
@@ -141,7 +141,7 @@ function App() {
         ) : showWelcome ? (
           <WelcomeScreen initialTab={initialTab} />
         ) : (
-          <Suspense fallback={<LoadingSpinner message="Loading editor..." />}>
+          <Suspense fallback={<LoadingSpinner message="Cargando editor..." />}>
             <EditorInterface />
           </Suspense>
         )}

@@ -23,17 +23,17 @@ interface RecoveryDialogProps {
 function formatTimeAgo(timestamp: number): string {
   const seconds = Math.floor((Date.now() - timestamp) / 1000);
 
-  if (seconds < 60) return "just now";
+  if (seconds < 60) return "justo ahora";
   if (seconds < 3600) {
     const mins = Math.floor(seconds / 60);
-    return `${mins} ${mins === 1 ? "minute" : "minutes"} ago`;
+    return `hace ${mins} ${mins === 1 ? "minuto" : "minutos"}`;
   }
   if (seconds < 86400) {
     const hours = Math.floor(seconds / 3600);
-    return `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+    return `hace ${hours} ${hours === 1 ? "hora" : "horas"}`;
   }
   const days = Math.floor(seconds / 86400);
-  return `${days} ${days === 1 ? "day" : "days"} ago`;
+  return `hace ${days} ${days === 1 ? "día" : "días"}`;
 }
 
 function formatDate(timestamp: number): string {
@@ -80,10 +80,10 @@ export const RecoveryDialog: React.FC<RecoveryDialogProps> = ({
             </div>
             <div>
               <DialogTitle className="text-base font-semibold text-text-primary">
-                Recover Your Work
+                Recupera tu trabajo
               </DialogTitle>
               <DialogDescription className="text-sm text-text-secondary mt-0.5">
-                We found an unsaved project
+                Encontramos un proyecto sin guardar
               </DialogDescription>
             </div>
           </div>
@@ -103,7 +103,7 @@ export const RecoveryDialog: React.FC<RecoveryDialogProps> = ({
             </div>
             <div className="flex items-center gap-2 text-sm text-text-muted">
               <Clock className="w-4 h-4 shrink-0" />
-              <span>Last saved {formatTimeAgo(mostRecent.timestamp)}</span>
+              <span>Último guardado {formatTimeAgo(mostRecent.timestamp)}</span>
               <span className="text-text-muted/50">•</span>
               <span className="text-text-muted/70 truncate">
                 {formatDate(mostRecent.timestamp)}
@@ -117,14 +117,14 @@ export const RecoveryDialog: React.FC<RecoveryDialogProps> = ({
               onClick={onDismiss}
               className="flex-1"
             >
-              Start Fresh
+              Empezar de cero
             </Button>
             <Button
               onClick={() => handleRecover(mostRecent.id)}
               disabled={selectedSave === mostRecent.id}
               className="flex-1"
             >
-              {selectedSave === mostRecent.id ? "Recovering..." : "Recover Project"}
+              {selectedSave === mostRecent.id ? "Recuperando..." : "Recuperar proyecto"}
             </Button>
           </div>
 
@@ -140,7 +140,7 @@ export const RecoveryDialog: React.FC<RecoveryDialogProps> = ({
                     className={`w-4 h-4 transition-transform duration-200 ${showOlderSaves ? "rotate-180" : ""}`}
                   />
                   <span>
-                    {olderSaves.length} older {olderSaves.length === 1 ? "save" : "saves"} available
+                    {olderSaves.length} {olderSaves.length === 1 ? "guardado anterior disponible" : "guardados anteriores disponibles"}
                   </span>
                 </CollapsibleTrigger>
                 {onClearAll && (
@@ -148,7 +148,7 @@ export const RecoveryDialog: React.FC<RecoveryDialogProps> = ({
                     onClick={handleClearAll}
                     disabled={isClearing}
                     className="p-1.5 rounded-lg text-text-muted hover:text-red-400 hover:bg-red-500/10 transition-colors disabled:opacity-50"
-                    title="Clear all saved projects"
+                    title="Borrar todos los proyectos guardados"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>

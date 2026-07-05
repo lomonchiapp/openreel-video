@@ -90,7 +90,7 @@ export const CategoryTabs: React.FC<CategoryTabsProps> = ({
           }`}
         >
           <LayoutGrid size={14} />
-          All
+          Todas
           <span
             className={`text-xs ${selectedCategory === "all" ? "text-black/60" : "text-text-muted"}`}
           >

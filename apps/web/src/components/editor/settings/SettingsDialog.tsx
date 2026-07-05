@@ -13,7 +13,7 @@ import { ApiKeysPanel } from "./ApiKeysPanel";
 
 const TABS: readonly { id: SettingsTab; label: string; icon: typeof Settings }[] = [
   { id: "general", label: "General", icon: Settings },
-  { id: "api-keys", label: "API Keys", icon: Key },
+  { id: "api-keys", label: "Claves API", icon: Key },
 ];
 
 export const SettingsDialog: React.FC = () => {
@@ -29,14 +29,14 @@ export const SettingsDialog: React.FC = () => {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Settings size={18} className="text-primary" />
-            Settings
+            Ajustes
           </DialogTitle>
           <DialogDescription>
-            Configure preferences and manage API keys for external services.
+            Configura tus preferencias y administra las claves API de servicios externos.
           </DialogDescription>
         </DialogHeader>
 
-        <div role="tablist" aria-label="Settings" className="flex gap-1 p-1 bg-muted rounded-md">
+        <div role="tablist" aria-label="Ajustes" className="flex gap-1 p-1 bg-muted rounded-md">
           {TABS.map((tab) => (
             <button
               key={tab.id}

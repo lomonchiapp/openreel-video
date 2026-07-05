@@ -121,9 +121,9 @@ async function deletePresetFromDB(presetId: string): Promise<void> {
 const builtInPresets: MotionPreset[] = [
   {
     id: "fade-in",
-    name: "Fade In",
+    name: "Fundido de entrada",
     category: "entrance",
-    description: "Smooth fade in from transparent",
+    description: "Fundido suave desde transparente",
     duration: 0.5,
     tags: ["simple", "opacity"],
     tracks: [
@@ -138,9 +138,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "slide-in-left",
-    name: "Slide In Left",
+    name: "Deslizar desde la izquierda",
     category: "entrance",
-    description: "Slide in from the left edge",
+    description: "Entra deslizándose desde el borde izquierdo",
     duration: 0.6,
     tags: ["slide", "direction"],
     tracks: [
@@ -163,9 +163,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "slide-in-right",
-    name: "Slide In Right",
+    name: "Deslizar desde la derecha",
     category: "entrance",
-    description: "Slide in from the right edge",
+    description: "Entra deslizándose desde el borde derecho",
     duration: 0.6,
     tags: ["slide", "direction"],
     tracks: [
@@ -188,9 +188,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "slide-in-top",
-    name: "Slide In Top",
+    name: "Deslizar desde arriba",
     category: "entrance",
-    description: "Slide in from the top edge",
+    description: "Entra deslizándose desde el borde superior",
     duration: 0.6,
     tags: ["slide", "direction"],
     tracks: [
@@ -213,9 +213,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "slide-in-bottom",
-    name: "Slide In Bottom",
+    name: "Deslizar desde abajo",
     category: "entrance",
-    description: "Slide in from the bottom edge",
+    description: "Entra deslizándose desde el borde inferior",
     duration: 0.6,
     tags: ["slide", "direction"],
     tracks: [
@@ -238,9 +238,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "scale-in",
-    name: "Scale In",
+    name: "Entrada con escala",
     category: "entrance",
-    description: "Pop in with scale animation",
+    description: "Aparece con una animación de escala",
     duration: 0.4,
     tags: ["scale", "pop"],
     tracks: [
@@ -271,7 +271,7 @@ const builtInPresets: MotionPreset[] = [
     id: "pop",
     name: "Pop",
     category: "entrance",
-    description: "Quick pop entrance with overshoot",
+    description: "Entrada rápida con rebote de escala",
     duration: 0.3,
     tags: ["scale", "quick"],
     tracks: [
@@ -300,9 +300,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "bounce-in",
-    name: "Bounce In",
+    name: "Rebote de entrada",
     category: "entrance",
-    description: "Bouncy scale entrance",
+    description: "Entrada con escala rebotando",
     duration: 0.6,
     tags: ["bounce", "playful"],
     tracks: [
@@ -335,9 +335,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "flip-in",
-    name: "Flip In",
+    name: "Giro de entrada",
     category: "entrance",
-    description: "3D flip entrance effect",
+    description: "Efecto de entrada con giro 3D",
     duration: 0.5,
     tags: ["3d", "rotation"],
     tracks: [
@@ -359,9 +359,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "blur-in",
-    name: "Blur In",
+    name: "Desenfoque de entrada",
     category: "entrance",
-    description: "Fade in with blur effect",
+    description: "Aparece con efecto de desenfoque",
     duration: 0.5,
     tags: ["blur", "soft"],
     tracks: [
@@ -390,9 +390,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "fade-out",
-    name: "Fade Out",
+    name: "Fundido de salida",
     category: "exit",
-    description: "Smooth fade out to transparent",
+    description: "Fundido suave hacia transparente",
     duration: 0.5,
     tags: ["simple", "opacity"],
     tracks: [
@@ -407,9 +407,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "slide-out-left",
-    name: "Slide Out Left",
+    name: "Deslizar hacia la izquierda",
     category: "exit",
-    description: "Slide out to the left edge",
+    description: "Sale deslizándose por el borde izquierdo",
     duration: 0.6,
     tags: ["slide", "direction"],
     tracks: [
@@ -432,9 +432,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "slide-out-right",
-    name: "Slide Out Right",
+    name: "Deslizar hacia la derecha",
     category: "exit",
-    description: "Slide out to the right edge",
+    description: "Sale deslizándose por el borde derecho",
     duration: 0.6,
     tags: ["slide", "direction"],
     tracks: [
@@ -457,9 +457,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "scale-out",
-    name: "Scale Out",
+    name: "Salida con escala",
     category: "exit",
-    description: "Shrink and fade out",
+    description: "Se encoge y se desvanece",
     duration: 0.4,
     tags: ["scale"],
     tracks: [
@@ -488,9 +488,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "shrink",
-    name: "Shrink",
+    name: "Encoger",
     category: "exit",
-    description: "Quick shrink exit",
+    description: "Salida rápida encogiéndose",
     duration: 0.3,
     tags: ["scale", "quick"],
     tracks: [
@@ -519,9 +519,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "blur-out",
-    name: "Blur Out",
+    name: "Desenfoque de salida",
     category: "exit",
-    description: "Fade out with blur effect",
+    description: "Se desvanece con efecto de desenfoque",
     duration: 0.5,
     tags: ["blur", "soft"],
     tracks: [
@@ -550,9 +550,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "pulse",
-    name: "Pulse",
+    name: "Pulso",
     category: "emphasis",
-    description: "Subtle pulsing scale effect",
+    description: "Efecto sutil de pulso de escala",
     duration: 0.8,
     tags: ["attention", "loop"],
     tracks: [
@@ -576,9 +576,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "shake",
-    name: "Shake",
+    name: "Sacudida",
     category: "emphasis",
-    description: "Quick horizontal shake",
+    description: "Sacudida horizontal rápida",
     duration: 0.5,
     tags: ["attention", "error"],
     tracks: [
@@ -598,9 +598,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "bounce",
-    name: "Bounce",
+    name: "Rebote",
     category: "emphasis",
-    description: "Bouncing attention effect",
+    description: "Efecto de rebote para llamar la atención",
     duration: 0.6,
     tags: ["attention", "playful"],
     tracks: [
@@ -619,9 +619,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "wiggle",
-    name: "Wiggle",
+    name: "Meneo",
     category: "emphasis",
-    description: "Playful wiggle rotation",
+    description: "Rotación juguetona de lado a lado",
     duration: 0.6,
     tags: ["attention", "playful"],
     tracks: [
@@ -642,9 +642,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "rubber-band",
-    name: "Rubber Band",
+    name: "Banda elástica",
     category: "emphasis",
-    description: "Elastic stretch effect",
+    description: "Efecto de estiramiento elástico",
     duration: 0.6,
     tags: ["attention", "playful"],
     tracks: [
@@ -672,9 +672,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "glow-pulse",
-    name: "Glow Pulse",
+    name: "Pulso de brillo",
     category: "emphasis",
-    description: "Subtle opacity pulse",
+    description: "Pulso sutil de opacidad",
     duration: 1,
     tags: ["attention", "subtle"],
     tracks: [
@@ -690,9 +690,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "cross-dissolve",
-    name: "Cross Dissolve",
+    name: "Disolvencia cruzada",
     category: "transition",
-    description: "Simple opacity crossfade",
+    description: "Fundido cruzado simple de opacidad",
     duration: 0.5,
     tags: ["simple"],
     tracks: [
@@ -707,9 +707,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "wipe-left",
-    name: "Wipe Left",
+    name: "Barrido a la izquierda",
     category: "transition",
-    description: "Wipe transition to the left",
+    description: "Transición de barrido hacia la izquierda",
     duration: 0.5,
     tags: ["wipe", "direction"],
     tracks: [
@@ -732,9 +732,9 @@ const builtInPresets: MotionPreset[] = [
   },
   {
     id: "zoom-transition",
-    name: "Zoom Transition",
+    name: "Transición de zoom",
     category: "transition",
-    description: "Zoom out transition",
+    description: "Transición alejando el zoom",
     duration: 0.5,
     tags: ["zoom", "scale"],
     tracks: [

@@ -27,14 +27,14 @@ export interface InspectorTabDef {
 }
 
 export const TAB_DEFS: Record<InspectorTabId, InspectorTabDef> = {
-  transform: { id: "transform", label: "Transform", icon: Move },
+  transform: { id: "transform", label: "Transformar", icon: Move },
   color: { id: "color", label: "Color", icon: Palette },
-  effects: { id: "effects", label: "Effects", icon: Wand2 },
+  effects: { id: "effects", label: "Efectos", icon: Wand2 },
   audio: { id: "audio", label: "Audio", icon: Volume2 },
-  speed: { id: "speed", label: "Speed", icon: Gauge },
-  animate: { id: "animate", label: "Animate", icon: Film },
-  ai: { id: "ai", label: "AI", icon: Sparkles },
-  style: { id: "style", label: "Style", icon: Type },
+  speed: { id: "speed", label: "Velocidad", icon: Gauge },
+  animate: { id: "animate", label: "Animar", icon: Film },
+  ai: { id: "ai", label: "IA", icon: Sparkles },
+  style: { id: "style", label: "Estilo", icon: Type },
 };
 
 const TABS_BY_CLIP_TYPE: Record<InspectorClipType, InspectorTabId[]> = {

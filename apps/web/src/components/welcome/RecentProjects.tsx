@@ -97,10 +97,10 @@ export const RecentProjects: React.FC<RecentProjectsProps> = ({
       (now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24),
     );
 
-    if (diffDays === 0) return "Today";
-    if (diffDays === 1) return "Yesterday";
-    if (diffDays < 7) return `${diffDays} days ago`;
-    if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+    if (diffDays === 0) return "Hoy";
+    if (diffDays === 1) return "Ayer";
+    if (diffDays < 7) return `Hace ${diffDays} días`;
+    if (diffDays < 30) return `Hace ${Math.floor(diffDays / 7)} semanas`;
 
     return date.toLocaleDateString();
   };
@@ -110,7 +110,7 @@ export const RecentProjects: React.FC<RecentProjectsProps> = ({
       <div className="flex flex-col items-center justify-center py-20">
         <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin mb-4" />
         <p className="text-sm text-text-secondary">
-          Loading recent projects...
+          Cargando proyectos recientes...
         </p>
       </div>
     );
@@ -123,11 +123,11 @@ export const RecentProjects: React.FC<RecentProjectsProps> = ({
           <Clock size={24} className="text-text-muted" />
         </div>
         <h3 className="text-base font-medium text-text-primary mb-2">
-          No Recent Projects
+          Sin proyectos recientes
         </h3>
         <p className="text-sm text-text-muted text-center max-w-md">
-          Your recently opened projects will appear here. Start a new project or
-          use a template to get started.
+          Tus proyectos abiertos recientemente aparecerán aquí. Crea un proyecto
+          nuevo o usa una plantilla para empezar.
         </p>
       </div>
     );
@@ -137,7 +137,7 @@ export const RecentProjects: React.FC<RecentProjectsProps> = ({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-medium text-text-primary">
-          Recent Projects ({recentProjects.length})
+          Proyectos recientes ({recentProjects.length})
         </h3>
       </div>
 
@@ -176,7 +176,7 @@ export const RecentProjects: React.FC<RecentProjectsProps> = ({
               <button
                 onClick={(e) => handleRemoveProject(project.id, e)}
                 className="absolute top-2 right-2 p-1.5 text-text-muted hover:text-red-400 opacity-0 group-hover:opacity-100 transition-all rounded-lg bg-background/80 hover:bg-red-500/10 backdrop-blur-sm"
-                title="Remove from recent"
+                title="Quitar de recientes"
               >
                 <Trash2 size={14} />
               </button>
@@ -186,7 +186,7 @@ export const RecentProjects: React.FC<RecentProjectsProps> = ({
       </div>
 
       <p className="text-xs text-text-muted text-center">
-        Recent projects are stored locally in your browser
+        Los proyectos recientes se guardan localmente en tu navegador
       </p>
     </div>
   );

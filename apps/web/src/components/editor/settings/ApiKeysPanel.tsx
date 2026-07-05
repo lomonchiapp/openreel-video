@@ -67,7 +67,7 @@ export const ApiKeysPanel: React.FC = () => {
         await setupMasterPassword(password);
         setPasswordDialogMode(null);
         await refreshState();
-        toast.success("Master password set", "Your API keys will be encrypted with AES-256-GCM.");
+        toast.success("Contraseña maestra establecida", "Tus claves API se cifrarán con AES-256-GCM.");
         return true;
       }
 
@@ -76,7 +76,7 @@ export const ApiKeysPanel: React.FC = () => {
         if (success) {
           setPasswordDialogMode(null);
           await refreshState();
-          toast.success("Session unlocked", "You can now manage API keys.");
+          toast.success("Sesión desbloqueada", "Ya puedes administrar tus claves API.");
         }
         return success;
       }
@@ -86,7 +86,7 @@ export const ApiKeysPanel: React.FC = () => {
         if (success) {
           setPasswordDialogMode(null);
           await refreshState();
-          toast.success("Password changed", "All keys have been re-encrypted.");
+          toast.success("Contraseña cambiada", "Todas las claves se volvieron a cifrar.");
         }
         return success;
       }
@@ -109,9 +109,9 @@ export const ApiKeysPanel: React.FC = () => {
         setNewKeyValue("");
         setAddingService(null);
         await refreshState();
-        toast.success(`${service.label} key saved`, "API key encrypted and stored.");
+        toast.success(`Clave de ${service.label} guardada`, "Clave API cifrada y almacenada.");
       } catch (err) {
-        toast.error("Failed to save", err instanceof Error ? err.message : "Unknown error");
+        toast.error("Error al guardar", err instanceof Error ? err.message : "Error desconocido");
       }
     },
     [newKeyValue, addConfiguredService, refreshState],
@@ -129,9 +129,9 @@ export const ApiKeysPanel: React.FC = () => {
           return next;
         });
         await refreshState();
-        toast.success(`${service?.label ?? serviceId} key removed`);
+        toast.success(`Clave de ${service?.label ?? serviceId} eliminada`);
       } catch (err) {
-        toast.error("Failed to delete", err instanceof Error ? err.message : "Unknown error");
+        toast.error("Error al eliminar", err instanceof Error ? err.message : "Error desconocido");
       }
     },
     [removeConfiguredService, refreshState],
@@ -150,7 +150,7 @@ export const ApiKeysPanel: React.FC = () => {
         setShowKey((prev) => ({ ...prev, [serviceId]: true }));
       }
     } catch (err) {
-      toast.error("Failed to decrypt", err instanceof Error ? err.message : "Unknown error");
+      toast.error("Error al descifrar", err instanceof Error ? err.message : "Error desconocido");
     }
   }, [revealedKeys]);
 
@@ -174,15 +174,15 @@ export const ApiKeysPanel: React.FC = () => {
           <Shield size={32} className="text-primary" />
         </div>
         <h3 className="text-lg font-medium text-text-primary mb-2">
-          Secure API Key Storage
+          Almacenamiento seguro de claves API
         </h3>
         <p className="text-sm text-text-muted mb-6 max-w-sm">
-          Set up a master password to encrypt and store your API keys locally.
-          Keys are encrypted with AES-256-GCM and never leave your browser.
+          Configura una contraseña maestra para cifrar y guardar tus claves API
+          localmente. Las claves se cifran con AES-256-GCM y nunca salen de tu navegador.
         </p>
         <Button onClick={() => setPasswordDialogMode("setup")}>
           <KeyRound size={16} className="mr-2" />
-          Set Up Master Password
+          Configurar contraseña maestra
         </Button>
 
         {passwordDialogMode && (
@@ -205,14 +205,14 @@ export const ApiKeysPanel: React.FC = () => {
           <Lock size={32} className="text-amber-500" />
         </div>
         <h3 className="text-lg font-medium text-text-primary mb-2">
-          Session Locked
+          Sesión bloqueada
         </h3>
         <p className="text-sm text-text-muted mb-6 max-w-sm">
-          Enter your master password to view and manage API keys.
+          Ingresa tu contraseña maestra para ver y administrar tus claves API.
         </p>
         <Button onClick={() => setPasswordDialogMode("unlock")}>
           <Unlock size={16} className="mr-2" />
-          Unlock
+          Desbloquear
         </Button>
 
         {passwordDialogMode && (
@@ -235,7 +235,8 @@ export const ApiKeysPanel: React.FC = () => {
         <div className="flex items-center gap-2 text-sm text-text-muted">
           <Shield size={14} className="text-primary" />
           <span>
-            {storedKeys.length} key{storedKeys.length !== 1 ? "s" : ""} stored
+            {storedKeys.length}{" "}
+            {storedKeys.length !== 1 ? "claves guardadas" : "clave guardada"}
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -245,11 +246,11 @@ export const ApiKeysPanel: React.FC = () => {
             onClick={() => setPasswordDialogMode("change")}
           >
             <Key size={14} className="mr-1" />
-            Change Password
+            Cambiar contraseña
           </Button>
           <Button variant="outline" size="sm" onClick={handleLock}>
             <Lock size={14} className="mr-1" />
-            Lock
+            Bloquear
           </Button>
         </div>
       </div>
@@ -286,14 +287,14 @@ export const ApiKeysPanel: React.FC = () => {
                   <button
                     onClick={() => handleRevealKey(stored.id)}
                     className="p-1.5 rounded hover:bg-background-tertiary text-text-muted hover:text-text-primary transition-colors"
-                    title={isRevealed ? "Hide key" : "Show key"}
+                    title={isRevealed ? "Ocultar clave" : "Mostrar clave"}
                   >
                     {isRevealed ? <EyeOff size={14} /> : <Eye size={14} />}
                   </button>
                   <button
                     onClick={() => handleDeleteKey(stored.id)}
                     className="p-1.5 rounded hover:bg-error/10 text-text-muted hover:text-error transition-colors"
-                    title="Delete key"
+                    title="Eliminar clave"
                   >
                     <Trash2 size={14} />
                   </button>
@@ -313,8 +314,8 @@ export const ApiKeysPanel: React.FC = () => {
               </div>
 
               <div className="text-[10px] text-text-muted mt-2">
-                Added {new Date(stored.createdAt).toLocaleDateString()} &middot;
-                Updated {new Date(stored.updatedAt).toLocaleDateString()}
+                Agregada {new Date(stored.createdAt).toLocaleDateString()} &middot;
+                Actualizada {new Date(stored.updatedAt).toLocaleDateString()}
               </div>
             </div>
           );
@@ -327,15 +328,15 @@ export const ApiKeysPanel: React.FC = () => {
           <div className="flex items-center gap-2 mb-3">
             <Plus size={14} className="text-primary" />
             <span className="text-sm font-medium text-text-primary">
-              Add{" "}
-              {SERVICE_REGISTRY.find((s) => s.id === addingService)?.label} Key
+              Agregar clave de{" "}
+              {SERVICE_REGISTRY.find((s) => s.id === addingService)?.label}
             </span>
           </div>
           <Input
             type="password"
             value={newKeyValue}
             onChange={(e) => setNewKeyValue(e.target.value)}
-            placeholder="Paste your API key here"
+            placeholder="Pega tu clave API aquí"
             autoFocus
             className="mb-3 font-mono text-xs"
           />
@@ -348,21 +349,21 @@ export const ApiKeysPanel: React.FC = () => {
                 setNewKeyValue("");
               }}
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               size="sm"
               onClick={() => handleSaveKey(addingService)}
               disabled={!newKeyValue.trim()}
             >
-              Save Key
+              Guardar clave
             </Button>
           </div>
         </div>
       ) : availableServices.length > 0 ? (
         <div>
           <h4 className="text-sm font-medium text-text-secondary mb-3">
-            Add API Key
+            Agregar clave API
           </h4>
           <div className="grid gap-2">
             {availableServices.map((service) => (

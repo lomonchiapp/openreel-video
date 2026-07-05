@@ -39,37 +39,37 @@ interface SearchItem {
 const SEARCHABLE_EFFECTS: SearchItem[] = [
   {
     id: "transform",
-    name: "Transform",
+    name: "Transformar",
     category: "Position & Size",
     keywords: ["position", "scale", "rotate", "move", "resize", "transform"],
     icon: Move,
-    description: "Position, scale, and rotate the clip",
+    description: "Posición, escala y rotación del clip",
     sectionId: "transform",
     clipTypes: ["video", "image", "text", "shape"],
   },
   {
     id: "crop",
-    name: "Crop",
+    name: "Recorte",
     category: "Position & Size",
     keywords: ["crop", "cut", "trim", "frame", "aspect"],
     icon: Focus,
-    description: "Crop and frame the clip",
+    description: "Recorta y encuadra el clip",
     sectionId: "crop",
     clipTypes: ["video", "image"],
   },
   {
     id: "speed",
-    name: "Speed Control",
+    name: "Control de velocidad",
     category: "Time",
     keywords: ["speed", "slow", "fast", "time", "duration", "playback"],
     icon: Clock,
-    description: "Control playback speed and time remapping",
+    description: "Controla la velocidad de reproducción y el remapeo de tiempo",
     sectionId: "speed",
     clipTypes: ["video", "audio"],
   },
   {
     id: "video-effects",
-    name: "Video Effects",
+    name: "Efectos de video",
     category: "Video",
     keywords: [
       "brightness",
@@ -81,13 +81,13 @@ const SEARCHABLE_EFFECTS: SearchItem[] = [
       "effects",
     ],
     icon: Sliders,
-    description: "Brightness, contrast, saturation, blur, sharpen",
+    description: "Brillo, contraste, saturación, desenfoque, nitidez",
     sectionId: "video-effects",
     clipTypes: ["video", "image"],
   },
   {
     id: "color-grading",
-    name: "Color Grading",
+    name: "Corrección de color",
     category: "Video",
     keywords: [
       "color",
@@ -100,47 +100,47 @@ const SEARCHABLE_EFFECTS: SearchItem[] = [
       "temperature",
     ],
     icon: Palette,
-    description: "Color wheels, curves, LUTs, and HSL adjustments",
+    description: "Ruedas de color, curvas, LUTs y ajustes HSL",
     sectionId: "color-grading",
     clipTypes: ["video", "image"],
   },
   {
     id: "green-screen",
-    name: "Green Screen",
+    name: "Pantalla verde",
     category: "Video",
     keywords: ["green", "screen", "chroma", "key", "background", "remove"],
     icon: Eye,
-    description: "Chroma key for green/blue screen removal",
+    description: "Chroma key para eliminar fondos verdes o azules",
     sectionId: "green-screen",
     clipTypes: ["video", "image"],
   },
   {
     id: "background-removal",
-    name: "Background Removal",
+    name: "Quitar fondo",
     category: "Video",
     keywords: ["background", "remove", "ai", "mask", "cutout", "person"],
     icon: Wand2,
-    description: "AI-powered background removal",
+    description: "Eliminación de fondo con IA",
     sectionId: "background-removal",
     clipTypes: ["video", "image"],
   },
   {
     id: "masking",
-    name: "Masking",
+    name: "Máscaras",
     category: "Video",
     keywords: ["mask", "shape", "feather", "reveal", "hide", "vignette"],
     icon: Layers,
-    description: "Shape masks to reveal or hide areas",
+    description: "Máscaras de forma para revelar u ocultar áreas",
     sectionId: "masking",
     clipTypes: ["video", "image"],
   },
   {
     id: "motion-tracking",
-    name: "Motion Tracking",
+    name: "Seguimiento de movimiento",
     category: "Video",
     keywords: ["motion", "track", "follow", "pin", "stabilize"],
     icon: Move,
-    description: "Track motion and attach elements",
+    description: "Rastrea movimiento y ancla elementos",
     sectionId: "motion-tracking",
     clipTypes: ["video"],
   },
@@ -150,63 +150,63 @@ const SEARCHABLE_EFFECTS: SearchItem[] = [
     category: "Video",
     keywords: ["pip", "picture", "overlay", "corner", "position"],
     icon: Square,
-    description: "Position clips as picture-in-picture overlays",
+    description: "Posiciona clips como superposición picture-in-picture",
     sectionId: "pip",
     clipTypes: ["video", "image"],
   },
   {
     id: "blending",
-    name: "Blend Mode",
+    name: "Modo de fusión",
     category: "Video",
     keywords: ["blend", "mode", "multiply", "screen", "overlay", "opacity"],
     icon: Layers,
-    description: "Blend modes and opacity controls",
+    description: "Modos de fusión y control de opacidad",
     sectionId: "blending",
     clipTypes: ["video", "image"],
   },
   {
     id: "transform-3d",
-    name: "3D Transform",
+    name: "Transformación 3D",
     category: "Video",
     keywords: ["3d", "perspective", "rotate", "flip", "tilt"],
     icon: Move,
-    description: "3D rotation and perspective effects",
+    description: "Rotación 3D y efectos de perspectiva",
     sectionId: "transform-3d",
     clipTypes: ["video", "image"],
   },
   {
     id: "keyframes",
-    name: "Keyframes",
+    name: "Fotogramas clave",
     category: "Animation",
     keywords: ["keyframe", "animate", "animation", "ease", "interpolate"],
     icon: Zap,
-    description: "Animate properties over time",
+    description: "Anima propiedades a lo largo del tiempo",
     sectionId: "keyframes",
     clipTypes: ["video", "image", "text", "shape"],
   },
   {
     id: "transitions",
-    name: "Transitions",
+    name: "Transiciones",
     category: "Animation",
     keywords: ["transition", "fade", "dissolve", "wipe", "slide"],
     icon: Zap,
-    description: "Clip-to-clip transitions",
+    description: "Transiciones entre clips",
     sectionId: "transitions",
     clipTypes: ["video", "image"],
   },
   {
     id: "motion-presets",
-    name: "Motion Presets",
+    name: "Presets de movimiento",
     category: "Animation",
     keywords: ["motion", "preset", "zoom", "pan", "shake", "bounce"],
     icon: Zap,
-    description: "Pre-built motion animations",
+    description: "Animaciones de movimiento predefinidas",
     sectionId: "motion-presets",
     clipTypes: ["video", "image"],
   },
   {
     id: "audio-effects",
-    name: "Audio Effects",
+    name: "Efectos de audio",
     category: "Audio",
     keywords: [
       "audio",
@@ -218,59 +218,70 @@ const SEARCHABLE_EFFECTS: SearchItem[] = [
       "sound",
     ],
     icon: Music2,
-    description: "EQ, compressor, reverb, and more",
+    description: "EQ, compresor, reverb y más",
     sectionId: "audio-effects",
     clipTypes: ["audio", "video"],
   },
   {
     id: "audio-ducking",
-    name: "Audio Ducking",
+    name: "Ducking de audio",
     category: "Audio",
     keywords: ["duck", "ducking", "voice", "music", "fade", "auto"],
     icon: Music2,
-    description: "Auto-duck music under voice",
+    description: "Atenúa la música bajo la voz automáticamente",
     sectionId: "audio-ducking",
     clipTypes: ["audio", "video"],
   },
   {
     id: "text-properties",
-    name: "Text Properties",
+    name: "Propiedades de texto",
     category: "Text",
     keywords: ["text", "font", "size", "color", "style", "typography"],
     icon: Type,
-    description: "Font, size, color, and text styling",
+    description: "Fuente, tamaño, color y estilo de texto",
     sectionId: "text-properties",
     clipTypes: ["text"],
   },
   {
     id: "text-animation",
-    name: "Text Animation",
+    name: "Animación de texto",
     category: "Text",
     keywords: ["text", "animate", "typewriter", "fade", "slide", "bounce"],
     icon: Type,
-    description: "Animate text with presets",
+    description: "Anima texto con presets",
     sectionId: "text-animation",
     clipTypes: ["text"],
   },
   {
     id: "shape-properties",
-    name: "Shape Properties",
+    name: "Propiedades de forma",
     category: "Shapes",
     keywords: ["shape", "fill", "stroke", "corner", "radius", "shadow"],
     icon: Square,
-    description: "Shape fill, stroke, and effects",
+    description: "Relleno, borde y efectos de la forma",
     sectionId: "shape-properties",
     clipTypes: ["shape"],
   },
 ];
 
 const CATEGORIES = [
-  { id: "all", name: "All" },
+  { id: "all", name: "Todo" },
   { id: "video", name: "Video", icon: Video },
   { id: "audio", name: "Audio", icon: Music2 },
-  { id: "text", name: "Text", icon: Type },
-  { id: "animation", name: "Animation", icon: Zap },
+  { id: "text", name: "Texto", icon: Type },
+  { id: "animation", name: "Animación", icon: Zap },
 ];
+
+// Display labels for internal category values (kept in English for filter logic)
+const CATEGORY_LABELS: Record<string, string> = {
+  "Position & Size": "Posición y tamaño",
+  Time: "Tiempo",
+  Video: "Video",
+  Audio: "Audio",
+  Animation: "Animación",
+  Text: "Texto",
+  Shapes: "Formas",
+};
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -425,8 +436,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             onChange={(e) => setQuery(e.target.value)}
             placeholder={
               selectedClipType
-                ? `Search effects for ${selectedClipType} clip...`
-                : "Search all effects and tools..."
+                ? `Buscar efectos para clips de ${{ text: "texto", shape: "forma", video: "video" }[selectedClipType]}...`
+                : "Buscar efectos y herramientas..."
             }
             className="flex-1 bg-transparent border-0 text-text-primary focus-visible:ring-0"
           />
@@ -466,9 +477,9 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 size={32}
                 className="mx-auto mb-3 text-text-muted opacity-50"
               />
-              <p className="text-sm text-text-muted">No effects found</p>
+              <p className="text-sm text-text-muted">No se encontraron efectos</p>
               <p className="text-xs text-text-muted mt-1">
-                Try a different search term or category
+                Prueba con otro término u otra categoría
               </p>
             </div>
           ) : (
@@ -506,7 +517,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                           {effect.name}
                         </span>
                         <span className="text-[10px] text-text-muted px-1.5 py-0.5 rounded bg-background-tertiary">
-                          {effect.category}
+                          {CATEGORY_LABELS[effect.category] ?? effect.category}
                         </span>
                       </div>
                       <p className="text-xs text-text-muted mt-0.5 truncate">
@@ -514,7 +525,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       </p>
                     </div>
                     <div className="text-[10px] text-text-muted">
-                      ↵ to select
+                      ↵ para elegir
                     </div>
                   </button>
                 );
@@ -525,13 +536,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
         <div className="px-4 py-2 border-t border-border bg-background-tertiary/50 flex items-center justify-between">
           <div className="text-[10px] text-text-muted">
-            {filteredEffects.length} effect
-            {filteredEffects.length !== 1 ? "s" : ""} available
+            {filteredEffects.length} efecto
+            {filteredEffects.length !== 1 ? "s" : ""} disponible
+            {filteredEffects.length !== 1 ? "s" : ""}
           </div>
           <div className="flex items-center gap-3 text-[10px] text-text-muted">
-            <span>↑↓ Navigate</span>
-            <span>↵ Select</span>
-            <span>ESC Close</span>
+            <span>↑↓ Navegar</span>
+            <span>↵ Elegir</span>
+            <span>ESC Cerrar</span>
           </div>
         </div>
       </DialogContent>

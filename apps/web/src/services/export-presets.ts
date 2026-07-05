@@ -13,7 +13,7 @@ const SOCIAL_MEDIA_PRESETS: PlatformExportPreset[] = [
   {
     id: "youtube-4k",
     name: "YouTube 4K",
-    description: "Best quality for YouTube 4K - 50Mbps",
+    description: "La mejor calidad para YouTube 4K - 50 Mbps",
     platform: "YouTube",
     category: "social",
     aspectRatio: "16:9",
@@ -40,7 +40,7 @@ const SOCIAL_MEDIA_PRESETS: PlatformExportPreset[] = [
   {
     id: "youtube-4k-60",
     name: "YouTube 4K 60fps",
-    description: "4K 60fps for gaming/motion - 65Mbps",
+    description: "4K a 60 FPS para gaming/movimiento - 65 Mbps",
     platform: "YouTube",
     category: "social",
     aspectRatio: "16:9",
@@ -66,7 +66,7 @@ const SOCIAL_MEDIA_PRESETS: PlatformExportPreset[] = [
   {
     id: "youtube-1080p",
     name: "YouTube 1080p HD",
-    description: "Standard HD quality for YouTube",
+    description: "Calidad HD estándar para YouTube",
     platform: "YouTube",
     category: "social",
     aspectRatio: "16:9",
@@ -92,7 +92,7 @@ const SOCIAL_MEDIA_PRESETS: PlatformExportPreset[] = [
   {
     id: "youtube-shorts",
     name: "YouTube Shorts",
-    description: "Vertical format for YouTube Shorts (60s max)",
+    description: "Formato vertical para YouTube Shorts (máx. 60 s)",
     platform: "YouTube",
     category: "social",
     aspectRatio: "9:16",
@@ -119,7 +119,7 @@ const SOCIAL_MEDIA_PRESETS: PlatformExportPreset[] = [
   {
     id: "tiktok",
     name: "TikTok",
-    description: "Optimized for TikTok (3min max)",
+    description: "Optimizado para TikTok (máx. 3 min)",
     platform: "TikTok",
     category: "social",
     aspectRatio: "9:16",
@@ -148,7 +148,7 @@ const SOCIAL_MEDIA_PRESETS: PlatformExportPreset[] = [
   {
     id: "instagram-reels",
     name: "Instagram Reels",
-    description: "Vertical format for Reels (90s max)",
+    description: "Formato vertical para Reels (máx. 90 s)",
     platform: "Instagram",
     category: "social",
     aspectRatio: "9:16",
@@ -174,8 +174,8 @@ const SOCIAL_MEDIA_PRESETS: PlatformExportPreset[] = [
   },
   {
     id: "instagram-feed",
-    name: "Instagram Feed Video",
-    description: "Square format for feed posts (60s max)",
+    name: "Video de feed de Instagram",
+    description: "Formato cuadrado para publicaciones del feed (máx. 60 s)",
     platform: "Instagram",
     category: "social",
     aspectRatio: "1:1",
@@ -202,7 +202,7 @@ const SOCIAL_MEDIA_PRESETS: PlatformExportPreset[] = [
   {
     id: "instagram-story",
     name: "Instagram Story",
-    description: "Vertical format for Stories (15s per clip)",
+    description: "Formato vertical para Stories (15 s por clip)",
     platform: "Instagram",
     category: "social",
     aspectRatio: "9:16",
@@ -229,7 +229,7 @@ const SOCIAL_MEDIA_PRESETS: PlatformExportPreset[] = [
   {
     id: "twitter",
     name: "Twitter/X",
-    description: "Optimized for Twitter (2min 20s max)",
+    description: "Optimizado para Twitter (máx. 2 min 20 s)",
     platform: "Twitter",
     category: "social",
     aspectRatio: "16:9",
@@ -256,8 +256,8 @@ const SOCIAL_MEDIA_PRESETS: PlatformExportPreset[] = [
   },
   {
     id: "facebook-feed",
-    name: "Facebook Feed",
-    description: "Standard format for Facebook feed",
+    name: "Feed de Facebook",
+    description: "Formato estándar para el feed de Facebook",
     platform: "Facebook",
     category: "social",
     aspectRatio: "16:9",
@@ -283,7 +283,7 @@ const SOCIAL_MEDIA_PRESETS: PlatformExportPreset[] = [
   {
     id: "linkedin",
     name: "LinkedIn",
-    description: "Professional format for LinkedIn (10min max)",
+    description: "Formato profesional para LinkedIn (máx. 10 min)",
     platform: "LinkedIn",
     category: "social",
     aspectRatio: "16:9",
@@ -313,8 +313,8 @@ const SOCIAL_MEDIA_PRESETS: PlatformExportPreset[] = [
 const BROADCAST_PRESETS: PlatformExportPreset[] = [
   {
     id: "broadcast-4k-master",
-    name: "4K Master Quality",
-    description: "Maximum quality 4K - 80Mbps H.265",
+    name: "Calidad máster 4K",
+    description: "Máxima calidad 4K - 80 Mbps H.265",
     platform: "Broadcast",
     category: "broadcast",
     aspectRatio: "16:9",
@@ -341,7 +341,7 @@ const BROADCAST_PRESETS: PlatformExportPreset[] = [
   {
     id: "broadcast-4k-prores-hq",
     name: "4K ProRes HQ",
-    description: "Professional ProRes for editing/mastering",
+    description: "ProRes profesional para edición/masterización",
     platform: "Broadcast",
     category: "broadcast",
     aspectRatio: "16:9",
@@ -368,7 +368,7 @@ const BROADCAST_PRESETS: PlatformExportPreset[] = [
   {
     id: "broadcast-4k-prores-4444",
     name: "4K ProRes 4444",
-    description: "Highest quality ProRes with alpha support",
+    description: "ProRes de máxima calidad con soporte de alfa",
     platform: "Broadcast",
     category: "broadcast",
     aspectRatio: "16:9",
@@ -394,8 +394,8 @@ const BROADCAST_PRESETS: PlatformExportPreset[] = [
   },
   {
     id: "broadcast-4k-60",
-    name: "4K 60fps High Motion",
-    description: "4K at 60fps for sports/gaming - 65Mbps",
+    name: "4K 60 FPS alto movimiento",
+    description: "4K a 60 FPS para deportes/gaming - 65 Mbps",
     platform: "Broadcast",
     category: "broadcast",
     aspectRatio: "16:9",
@@ -421,7 +421,7 @@ const BROADCAST_PRESETS: PlatformExportPreset[] = [
   {
     id: "broadcast-4k",
     name: "Broadcast 4K UHD",
-    description: "4K broadcast quality - 50Mbps",
+    description: "Calidad broadcast 4K - 50 Mbps",
     platform: "Broadcast",
     category: "broadcast",
     aspectRatio: "16:9",
@@ -446,8 +446,8 @@ const BROADCAST_PRESETS: PlatformExportPreset[] = [
   },
   {
     id: "broadcast-1080p-high",
-    name: "1080p High Quality",
-    description: "High bitrate 1080p - 20Mbps",
+    name: "1080p alta calidad",
+    description: "1080p con bitrate alto - 20 Mbps",
     platform: "Broadcast",
     category: "broadcast",
     aspectRatio: "16:9",
@@ -473,7 +473,7 @@ const BROADCAST_PRESETS: PlatformExportPreset[] = [
   {
     id: "broadcast-1080p-prores",
     name: "1080p ProRes HQ",
-    description: "ProRes HQ for 1080p editing",
+    description: "ProRes HQ para edición en 1080p",
     platform: "Broadcast",
     category: "broadcast",
     aspectRatio: "16:9",
@@ -500,7 +500,7 @@ const BROADCAST_PRESETS: PlatformExportPreset[] = [
   {
     id: "broadcast-hd",
     name: "Broadcast HD 1080p",
-    description: "Standard broadcast quality",
+    description: "Calidad broadcast estándar",
     platform: "Broadcast",
     category: "broadcast",
     aspectRatio: "16:9",
@@ -529,7 +529,7 @@ const WEB_PRESETS: PlatformExportPreset[] = [
   {
     id: "web-hd",
     name: "Web HD",
-    description: "Balanced quality for web embedding",
+    description: "Calidad equilibrada para insertar en la web",
     platform: "Web",
     category: "web",
     aspectRatio: "16:9",
@@ -555,8 +555,8 @@ const WEB_PRESETS: PlatformExportPreset[] = [
   },
   {
     id: "web-small",
-    name: "Web Optimized",
-    description: "Smaller file size for faster loading",
+    name: "Web optimizado",
+    description: "Archivo más liviano para una carga más rápida",
     platform: "Web",
     category: "web",
     aspectRatio: "16:9",
@@ -582,7 +582,7 @@ const WEB_PRESETS: PlatformExportPreset[] = [
   {
     id: "webm-vp9",
     name: "WebM VP9",
-    description: "Modern web format with VP9 codec (720p recommended)",
+    description: "Formato web moderno con códec VP9 (720p recomendado)",
     platform: "Web",
     category: "web",
     aspectRatio: "16:9",
@@ -610,8 +610,8 @@ const WEB_PRESETS: PlatformExportPreset[] = [
 const ARCHIVE_PRESETS: PlatformExportPreset[] = [
   {
     id: "archive-4k-prores",
-    name: "Archive 4K ProRes",
-    description: "Lossless 4K ProRes for long-term archival",
+    name: "Archivo 4K ProRes",
+    description: "ProRes 4K sin pérdida para archivado a largo plazo",
     platform: "Archive",
     category: "archive",
     aspectRatio: "16:9",
@@ -638,8 +638,8 @@ const ARCHIVE_PRESETS: PlatformExportPreset[] = [
   },
   {
     id: "archive-master",
-    name: "Archive Master H.265",
-    description: "High quality 4K H.265 - 80Mbps",
+    name: "Archivo máster H.265",
+    description: "4K H.265 de alta calidad - 80 Mbps",
     platform: "Archive",
     category: "archive",
     aspectRatio: "16:9",
@@ -664,8 +664,8 @@ const ARCHIVE_PRESETS: PlatformExportPreset[] = [
   },
   {
     id: "archive-1080p-prores",
-    name: "Archive 1080p ProRes",
-    description: "ProRes HQ for 1080p archival",
+    name: "Archivo 1080p ProRes",
+    description: "ProRes HQ para archivado en 1080p",
     platform: "Archive",
     category: "archive",
     aspectRatio: "16:9",
@@ -691,8 +691,8 @@ const ARCHIVE_PRESETS: PlatformExportPreset[] = [
   },
   {
     id: "archive-proxy",
-    name: "Archive Proxy",
-    description: "Lower quality proxy for editing",
+    name: "Proxy de archivo",
+    description: "Proxy de menor calidad para edición",
     platform: "Archive",
     category: "archive",
     aspectRatio: "16:9",
@@ -720,8 +720,8 @@ const ARCHIVE_PRESETS: PlatformExportPreset[] = [
 const AUDIO_PRESETS: PlatformExportPreset[] = [
   {
     id: "audio-mp3-320",
-    name: "MP3 High Quality",
-    description: "320kbps MP3 for music",
+    name: "MP3 alta calidad",
+    description: "MP3 a 320 kbps para música",
     platform: "Audio",
     category: "custom",
     settings: {
@@ -734,8 +734,8 @@ const AUDIO_PRESETS: PlatformExportPreset[] = [
   },
   {
     id: "audio-wav",
-    name: "WAV Lossless",
-    description: "Uncompressed WAV audio",
+    name: "WAV sin pérdida",
+    description: "Audio WAV sin comprimir",
     platform: "Audio",
     category: "archive",
     settings: {
@@ -748,8 +748,8 @@ const AUDIO_PRESETS: PlatformExportPreset[] = [
   },
   {
     id: "audio-aac",
-    name: "AAC High Quality",
-    description: "256kbps AAC for compatibility",
+    name: "AAC alta calidad",
+    description: "AAC a 256 kbps para compatibilidad",
     platform: "Audio",
     category: "custom",
     settings: {

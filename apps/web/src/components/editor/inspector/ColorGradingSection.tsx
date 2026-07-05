@@ -23,11 +23,11 @@ const WHITE_BALANCE_PRESETS: Array<{
   temperature: number;
   tint: number;
 }> = [
-  { label: "Tungsten", temperature: -40, tint: 8 },
-  { label: "Fluorescent", temperature: -15, tint: -10 },
-  { label: "Daylight", temperature: 0, tint: 0 },
-  { label: "Cloudy", temperature: 15, tint: 0 },
-  { label: "Shade", temperature: 30, tint: 5 },
+  { label: "Tungsteno", temperature: -40, tint: 8 },
+  { label: "Fluorescente", temperature: -15, tint: -10 },
+  { label: "Luz de día", temperature: 0, tint: 0 },
+  { label: "Nublado", temperature: 15, tint: 0 },
+  { label: "Sombra", temperature: 30, tint: 5 },
 ];
 
 const SubSection: React.FC<{
@@ -171,24 +171,24 @@ export const ColorGradingSection: React.FC<ColorGradingSectionProps> = ({
           className="flex items-center gap-1 px-2 py-1 text-[10px] text-text-muted hover:text-text-primary transition-colors"
         >
           <RotateCcw size={10} />
-          Reset All
+          Restablecer todo
         </button>
       </div>
 
-      <SubSection title="White Balance" defaultOpen>
+      <SubSection title="Balance de blancos" defaultOpen>
         <div className="space-y-4">
           <div className="flex items-start justify-between gap-2">
             <p className="text-[10px] text-text-muted leading-snug">
-              Warm up cool shots or cool down warm ones. Tint corrects green or
-              magenta casts.
+              Calienta o enfría la toma. El matiz corrige dominantes verdes o
+              magenta.
             </p>
             <button
               onClick={handleWhiteBalanceReset}
               className="flex items-center gap-1 px-2 py-0.5 text-[10px] text-text-muted hover:text-text-primary transition-colors shrink-0"
-              title="Reset white balance"
+              title="Restablecer balance de blancos"
             >
               <RotateCcw size={10} />
-              Reset
+              Restablecer
             </button>
           </div>
 
@@ -196,7 +196,7 @@ export const ColorGradingSection: React.FC<ColorGradingSectionProps> = ({
             <div className="flex items-center gap-1.5">
               <Thermometer size={12} className="text-text-muted" />
               <LabeledSlider
-                label="Temperature"
+                label="Temperatura"
                 value={temperatureValue}
                 onChange={handleTemperatureChange}
                 min={-100}
@@ -218,7 +218,7 @@ export const ColorGradingSection: React.FC<ColorGradingSectionProps> = ({
             <div className="flex items-center gap-1.5">
               <Sun size={12} className="text-text-muted" />
               <LabeledSlider
-                label="Tint"
+                label="Matiz"
                 value={tintValue}
                 onChange={handleTintChange}
                 min={-100}
@@ -238,7 +238,7 @@ export const ColorGradingSection: React.FC<ColorGradingSectionProps> = ({
 
           <div className="pt-1">
             <span className="text-[10px] text-text-muted block mb-1.5">
-              Presets
+              Preajustes
             </span>
             <div className="grid grid-cols-5 gap-1">
               {WHITE_BALANCE_PRESETS.map((preset) => {
@@ -254,7 +254,7 @@ export const ColorGradingSection: React.FC<ColorGradingSectionProps> = ({
                         ? "bg-primary text-white"
                         : "bg-background-tertiary border border-border text-text-secondary hover:text-text-primary"
                     }`}
-                    title={`Temp: ${preset.temperature}, Tint: ${preset.tint}`}
+                    title={`Temp: ${preset.temperature}, Matiz: ${preset.tint}`}
                   >
                     {preset.label}
                   </button>
@@ -265,7 +265,7 @@ export const ColorGradingSection: React.FC<ColorGradingSectionProps> = ({
         </div>
       </SubSection>
 
-      <SubSection title="Color Wheels" defaultOpen={false}>
+      <SubSection title="Ruedas de color" defaultOpen={false}>
         <ColorWheelsControl
           values={colorWheelValues}
           onChange={handleColorWheelsChange}
@@ -273,7 +273,7 @@ export const ColorGradingSection: React.FC<ColorGradingSectionProps> = ({
         />
       </SubSection>
 
-      <SubSection title="Curves">
+      <SubSection title="Curvas">
         <CurvesEditor
           values={curvesValues}
           onChange={handleCurvesChange}

@@ -37,7 +37,7 @@ export function MobileBlocker() {
           <div className="flex items-center justify-center gap-2">
             <div className="h-px w-8 bg-primary/50" />
             <p className="text-lg text-text-secondary font-medium">
-              Desktop Only
+              Solo para escritorio
             </p>
             <div className="h-px w-8 bg-primary/50" />
           </div>
@@ -45,12 +45,12 @@ export function MobileBlocker() {
 
         <div className="space-y-4 bg-background-secondary/50 backdrop-blur-sm rounded-xl p-6 border border-border">
           <p className="text-base text-text-primary leading-relaxed">
-            ixipost video is a professional video editor that requires a desktop or
-            laptop computer.
+            ixipost video es un editor de video profesional que requiere una
+            computadora de escritorio o laptop.
           </p>
           <p className="text-sm text-text-muted">
-            Please visit this page on your desktop or laptop to start creating
-            amazing videos.
+            Visita esta página desde tu computadora para empezar a crear
+            videos increíbles.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export function MobileBlocker() {
             href="https://openreel.video"
             className="inline-flex items-center gap-2 px-8 py-3 bg-primary hover:bg-primary-hover active:bg-primary-active text-white font-medium rounded-lg transition-all duration-200 shadow-glow hover:shadow-glow-lg transform hover:scale-[1.02] active:scale-[0.98]"
           >
-            Learn More
+            Más información
           </a>
         </div>
       </div>

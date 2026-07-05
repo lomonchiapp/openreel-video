@@ -37,7 +37,7 @@ const PRESET_GROUPS: PresetGroup[] = [
     ],
   },
   {
-    platform: "Square (1:1)",
+    platform: "Cuadrado (1:1)",
     presets: ["instagram-post", "facebook"],
   },
   {
@@ -45,16 +45,16 @@ const PRESET_GROUPS: PresetGroup[] = [
     presets: ["youtube-video", "twitter", "linkedin"],
   },
   {
-    platform: "Other",
+    platform: "Otros",
     presets: ["pinterest", "custom"],
   },
 ];
 
 const PRESET_ICONS: Record<string, React.ElementType> = {
   "Vertical (9:16)": Smartphone,
-  "Square (1:1)": Square,
+  "Cuadrado (1:1)": Square,
   "Horizontal (16:9)": Monitor,
-  Other: Square,
+  Otros: Square,
 };
 
 export const StartFromScratch: React.FC<StartFromScratchProps> = ({
@@ -75,7 +75,7 @@ export const StartFromScratch: React.FC<StartFromScratchProps> = ({
     setIsCreating(true);
 
     const settings = createProjectSettingsFromPreset(preset);
-    createNewProject(projectName.trim() || `${info?.name || "New"} Project`);
+    createNewProject(projectName.trim() || `Proyecto ${info?.name || "nuevo"}`);
     await updateSettings(settings);
 
     track(AnalyticsEvents.PROJECT_CREATED, {
@@ -105,20 +105,20 @@ export const StartFromScratch: React.FC<StartFromScratchProps> = ({
     <div className="space-y-6">
       <div>
         <Label className="text-sm font-medium text-text-primary mb-2 block">
-          Project Name
+          Nombre del proyecto
         </Label>
         <Input
           type="text"
           value={projectName}
           onChange={(e) => setProjectName(e.target.value)}
-          placeholder="My Awesome Video"
+          placeholder="Mi video increíble"
           className="max-w-md bg-background-tertiary border-border text-text-primary"
         />
       </div>
 
       <div>
         <h3 className="text-sm font-medium text-text-primary mb-4">
-          Select Format
+          Selecciona un formato
         </h3>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -183,18 +183,18 @@ export const StartFromScratch: React.FC<StartFromScratchProps> = ({
         <Info size={16} className="text-primary flex-shrink-0 mt-0.5" />
         <div>
           <p className="text-sm font-medium text-text-primary">
-            {info?.name || selectedPreset} Format
+            Formato {info?.name || selectedPreset}
           </p>
           <p className="text-xs text-text-muted mt-1">
             {preset.width}×{preset.height}px • {preset.frameRate || 30}fps
-            {preset.maxDuration && ` • Max ${preset.maxDuration}s`}
+            {preset.maxDuration && ` • Máx. ${preset.maxDuration}s`}
             {preset.recommendedDuration &&
-              ` • Recommended ${preset.recommendedDuration}s`}
+              ` • Recomendado ${preset.recommendedDuration}s`}
           </p>
           {preset.safeZone && (
             <p className="text-xs text-text-muted mt-0.5">
-              Safe zone: {preset.safeZone.top}px top, {preset.safeZone.bottom}px
-              bottom
+              Zona segura: {preset.safeZone.top}px arriba, {preset.safeZone.bottom}px
+              abajo
             </p>
           )}
         </div>
@@ -209,11 +209,11 @@ export const StartFromScratch: React.FC<StartFromScratchProps> = ({
           {isCreating ? (
             <>
               <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-              Creating...
+              Creando...
             </>
           ) : (
             <>
-              Create Project
+              Crear proyecto
               <ChevronRight size={16} />
             </>
           )}

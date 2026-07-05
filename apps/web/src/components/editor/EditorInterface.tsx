@@ -80,7 +80,7 @@ const useAutoSave = () => {
 const useEngineInitialization = () => {
   const { initialize, initialized, initializing, initError } = useEngineStore();
   const [bridgesReady, setBridgesReady] = useState(false);
-  const [initStatus, setInitStatus] = useState("Starting...");
+  const [initStatus, setInitStatus] = useState("Iniciando...");
   const [localError, setLocalError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -90,7 +90,7 @@ const useEngineInitialization = () => {
       try {
         const currentState = useEngineStore.getState();
         if (!currentState.initialized && !currentState.initializing) {
-          setInitStatus("Initializing video engine...");
+          setInitStatus("Iniciando motor de video...");
           await initialize();
         } else if (currentState.initializing) {
           await new Promise<void>((resolve) => {
@@ -108,23 +108,23 @@ const useEngineInitialization = () => {
         const engineState = useEngineStore.getState();
         if (!engineState.initialized) {
           throw new Error(
-            engineState.initError || "Engine initialization failed",
+            engineState.initError || "No se pudo iniciar el motor",
           );
         }
 
-        setInitStatus("Initializing media bridge...");
+        setInitStatus("Iniciando puente de medios...");
         await initializeMediaBridge();
         if (!isMounted) return;
 
-        setInitStatus("Initializing playback bridge...");
+        setInitStatus("Iniciando puente de reproducción...");
         await initializePlaybackBridge();
         if (!isMounted) return;
 
-        setInitStatus("Initializing render bridge...");
+        setInitStatus("Iniciando puente de render...");
         await initializeRenderBridge();
         if (!isMounted) return;
 
-        setInitStatus("Initializing effects bridge...");
+        setInitStatus("Iniciando puente de efectos...");
         const projectState = useProjectStore.getState();
         const { width, height } = projectState.project.settings;
         try {
@@ -137,7 +137,7 @@ const useEngineInitialization = () => {
         }
         if (!isMounted) return;
 
-        setInitStatus("Initializing transition bridge...");
+        setInitStatus("Iniciando puente de transiciones...");
         try {
           initializeTransitionBridge(width, height);
         } catch (transitionError) {
@@ -153,10 +153,10 @@ const useEngineInitialization = () => {
         console.error("Failed to initialize engines/bridges:", error);
         if (isMounted) {
           setLocalError(
-            error instanceof Error ? error.message : "Unknown error",
+            error instanceof Error ? error.message : "Error desconocido",
           );
           setInitStatus(
-            `Error: ${error instanceof Error ? error.message : "Unknown error"}`,
+            `Error: ${error instanceof Error ? error.message : "Error desconocido"}`,
           );
         }
       }
@@ -392,7 +392,7 @@ export const EditorInterface: React.FC = () => {
       <div className="w-full h-full bg-bg flex items-center justify-center">
         <div className="text-center">
           <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-fg-2 text-sm">Initializing editor…</p>
+          <p className="text-fg-2 text-sm">Iniciando el editor…</p>
           <p className="text-fg-muted text-xs mt-2">{initStatus}</p>
           {initError && (
             <p className="text-status-error text-xs mt-2">{initError}</p>
