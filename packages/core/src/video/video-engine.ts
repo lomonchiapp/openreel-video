@@ -1676,6 +1676,53 @@ export class VideoEngine {
       }
     }
 
+    // Crop-path (reframe animado): mismo mecanismo y mismos nombres de
+    // propiedad que el preview (apps/web/.../canvas-renderers.ts
+    // getAnimatedTransform) — sin esto el export ignoraba cualquier
+    // keyframe de crop.* y siempre usaba base.crop estatico.
+    let crop = base.crop;
+    const cropXKfs = keyframeEngine.getKeyframesForProperty(
+      keyframes,
+      "crop.x",
+    );
+    const cropYKfs = keyframeEngine.getKeyframesForProperty(
+      keyframes,
+      "crop.y",
+    );
+    const cropWidthKfs = keyframeEngine.getKeyframesForProperty(
+      keyframes,
+      "crop.width",
+    );
+    const cropHeightKfs = keyframeEngine.getKeyframesForProperty(
+      keyframes,
+      "crop.height",
+    );
+    if (
+      cropXKfs.length > 0 ||
+      cropYKfs.length > 0 ||
+      cropWidthKfs.length > 0 ||
+      cropHeightKfs.length > 0
+    ) {
+      const nextCrop = { x: 0, y: 0, width: 1, height: 1, ...base.crop };
+      if (cropXKfs.length > 0) {
+        const result = keyframeEngine.getValueAtTime(cropXKfs, localTime);
+        if (typeof result.value === "number") nextCrop.x = result.value;
+      }
+      if (cropYKfs.length > 0) {
+        const result = keyframeEngine.getValueAtTime(cropYKfs, localTime);
+        if (typeof result.value === "number") nextCrop.y = result.value;
+      }
+      if (cropWidthKfs.length > 0) {
+        const result = keyframeEngine.getValueAtTime(cropWidthKfs, localTime);
+        if (typeof result.value === "number") nextCrop.width = result.value;
+      }
+      if (cropHeightKfs.length > 0) {
+        const result = keyframeEngine.getValueAtTime(cropHeightKfs, localTime);
+        if (typeof result.value === "number") nextCrop.height = result.value;
+      }
+      crop = nextCrop;
+    }
+
     return {
       position: { x: positionX, y: positionY },
       scale: { x: scaleX, y: scaleY },
@@ -1684,7 +1731,7 @@ export class VideoEngine {
       anchor: base.anchor,
       borderRadius: base.borderRadius,
       fitMode: base.fitMode,
-      crop: base.crop,
+      crop,
     };
   }
 

@@ -534,6 +534,62 @@ export const getAnimatedTransform = (
     }
   }
 
+  // Crop-path (reframe animado): crop es fraccion 0-1 del frame fuente
+  // (ver drawFrameWithTransform/renderStickerClip, que multiplican por
+  // sourceWidth/Height). Sin keyframes de crop, result.crop queda igual
+  // que baseTransform.crop (pass-through estatico, comportamiento previo
+  // sin cambios). {x:0,y:0,width:1,height:1} = frame completo sin recortar,
+  // la misma base que usarian los primeros keyframes si el clip nunca tuvo
+  // un crop manual.
+  const cropXKeyframes = keyframes.filter((kf) => kf.property === "crop.x");
+  const cropYKeyframes = keyframes.filter((kf) => kf.property === "crop.y");
+  const cropWidthKeyframes = keyframes.filter(
+    (kf) => kf.property === "crop.width",
+  );
+  const cropHeightKeyframes = keyframes.filter(
+    (kf) => kf.property === "crop.height",
+  );
+
+  if (
+    cropXKeyframes.length > 0 ||
+    cropYKeyframes.length > 0 ||
+    cropWidthKeyframes.length > 0 ||
+    cropHeightKeyframes.length > 0
+  ) {
+    const crop = { x: 0, y: 0, width: 1, height: 1, ...result.crop };
+
+    if (cropXKeyframes.length > 0) {
+      const { value } = animationEngine.getValueAtTime(
+        cropXKeyframes,
+        clipLocalTime,
+      );
+      if (typeof value === "number") crop.x = value;
+    }
+    if (cropYKeyframes.length > 0) {
+      const { value } = animationEngine.getValueAtTime(
+        cropYKeyframes,
+        clipLocalTime,
+      );
+      if (typeof value === "number") crop.y = value;
+    }
+    if (cropWidthKeyframes.length > 0) {
+      const { value } = animationEngine.getValueAtTime(
+        cropWidthKeyframes,
+        clipLocalTime,
+      );
+      if (typeof value === "number") crop.width = value;
+    }
+    if (cropHeightKeyframes.length > 0) {
+      const { value } = animationEngine.getValueAtTime(
+        cropHeightKeyframes,
+        clipLocalTime,
+      );
+      if (typeof value === "number") crop.height = value;
+    }
+
+    result.crop = crop;
+  }
+
   return result;
 };
 

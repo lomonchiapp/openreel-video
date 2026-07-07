@@ -121,6 +121,46 @@ const ANIMATABLE_PROPERTIES: AnimatableProperty[] = [
     min: 0,
     max: 100,
   },
+  // Crop-path (reframe animado): x/y/width/height son fraccion 0-1 del
+  // frame fuente (ver getAnimatedTransform en canvas-renderers.ts/
+  // video-engine.ts). {x:0,y:0,width:1,height:1} = frame completo, mismo
+  // default que usa el motor cuando el clip aun no tiene ningun crop.
+  {
+    id: "crop.x",
+    label: "Encuadre X",
+    category: "Encuadre",
+    defaultValue: 0,
+    min: 0,
+    max: 1,
+    step: 0.01,
+  },
+  {
+    id: "crop.y",
+    label: "Encuadre Y",
+    category: "Encuadre",
+    defaultValue: 0,
+    min: 0,
+    max: 1,
+    step: 0.01,
+  },
+  {
+    id: "crop.width",
+    label: "Encuadre ancho",
+    category: "Encuadre",
+    defaultValue: 1,
+    min: 0,
+    max: 1,
+    step: 0.01,
+  },
+  {
+    id: "crop.height",
+    label: "Encuadre alto",
+    category: "Encuadre",
+    defaultValue: 1,
+    min: 0,
+    max: 1,
+    step: 0.01,
+  },
   {
     id: "volume",
     label: "Volumen",

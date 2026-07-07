@@ -1,6 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { useProjectStore } from "./project-store";
 import { useEngineStore } from "./engine-store";
+import { autoSaveManager } from "../services/auto-save";
+import { loadMediaBlob } from "../services/media-storage";
 import type { Project, Clip, MediaItem, Transition } from "@openreel/core";
 
 const {
@@ -113,8 +115,22 @@ vi.mock("../services/auto-save", () => ({
     getRecentSaves: vi.fn().mockResolvedValue([]),
     loadSave: vi.fn(),
     deleteSave: vi.fn(),
+    // Metodos realmente usados por recoverFromAutoSave (project-store.ts) —
+    // autoSaveManager.recover(saveId), no wrappers de nivel de modulo.
+    recover: vi.fn(),
   },
   initializeAutoSave: vi.fn().mockResolvedValue(undefined),
+}));
+
+// jsdom no implementa IndexedDB — sin este mock, loadMediaBlob real
+// intentaria abrir "openreel-db" y rechazaria con BROWSER_NOT_SUPPORTED,
+// rompiendo recoverFromAutoSave (Promise.all de loadMediaBlob por item).
+vi.mock("../services/media-storage", () => ({
+  saveMediaBlob: vi.fn().mockResolvedValue(undefined),
+  deleteMediaBlob: vi.fn().mockResolvedValue(undefined),
+  loadMediaBlob: vi.fn().mockResolvedValue(null),
+  loadFileHandle: vi.fn().mockResolvedValue(null),
+  loadDirectoryHandle: vi.fn().mockResolvedValue(null),
 }));
 
 vi.mock("../bridges/media-bridge", () => ({
@@ -1550,5 +1566,111 @@ Ignored block`;
 
     expect(captionClips).toHaveLength(1);
     expect(captionClips[0]?.text).toBe("Hello world");
+  });
+});
+
+describe("ProjectStore - recoverFromAutoSave", () => {
+  const baseProject: Project = {
+    id: "project-a",
+    name: "Project A",
+    createdAt: Date.now(),
+    modifiedAt: Date.now(),
+    settings: {
+      width: 1920,
+      height: 1080,
+      frameRate: 30,
+      sampleRate: 48000,
+      channels: 2,
+    },
+    timeline: { duration: 0, tracks: [], markers: [], subtitles: [] },
+    mediaLibrary: { items: [] },
+  };
+
+  function makeMediaItem(
+    id: string,
+    overrides: Partial<MediaItem> = {},
+  ): MediaItem {
+    return {
+      id,
+      name: `${id}.mp4`,
+      type: "video",
+      fileHandle: null,
+      blob: null,
+      metadata: {
+        duration: 10,
+        width: 1920,
+        height: 1080,
+        frameRate: 30,
+        codec: "avc1",
+        sampleRate: 48000,
+        channels: 2,
+        fileSize: 1000,
+      },
+      // URL no-blob: evita el camino de generateThumbnailFromBlob (crea
+      // <video>/<canvas> reales) dentro de restoreMediaItem — no es lo que
+      // este test verifica.
+      thumbnailUrl: "https://example.com/thumb.jpg",
+      waveformData: null,
+      ...overrides,
+    };
+  }
+
+  beforeEach(() => {
+    vi.mocked(autoSaveManager.recover).mockReset();
+    vi.mocked(loadMediaBlob).mockReset();
+  });
+
+  it("restaura el blob de cada media item buscando por su propio mediaId — no por el projectId del proyecto que se recupera", async () => {
+    // Reproduce el escenario de media compartida entre N clips generados
+    // (Generador de Clips): el MediaRecord de "shared-media-1" pertenece,
+    // segun el indice de propietario unico, a un proyecto HERMANO distinto
+    // del que se esta recuperando aqui. Antes del fix, recoverFromAutoSave
+    // buscaba por getMediaByProject(recoveredProject.id) y este item se
+    // habria quedado sin blob a pesar de que el blob si existe en storage.
+    const sharedBlob = new Blob(["fake-video-bytes"], { type: "video/mp4" });
+    const recoveredProject: Project = {
+      ...baseProject,
+      id: "project-b",
+      mediaLibrary: { items: [makeMediaItem("shared-media-1")] },
+    };
+
+    vi.mocked(autoSaveManager.recover).mockResolvedValue(recoveredProject);
+    vi.mocked(loadMediaBlob).mockImplementation(async (mediaId: string) =>
+      mediaId === "shared-media-1" ? sharedBlob : null,
+    );
+
+    const ok = await useProjectStore.getState().recoverFromAutoSave("save-1");
+
+    expect(ok).toBe(true);
+    expect(loadMediaBlob).toHaveBeenCalledWith("shared-media-1");
+    const restoredItem = useProjectStore
+      .getState()
+      .project.mediaLibrary.items.find((item) => item.id === "shared-media-1");
+    expect(restoredItem?.blob).toBe(sharedBlob);
+  });
+
+  it("devuelve false si no hay snapshot de auto-save para ese saveId", async () => {
+    vi.mocked(autoSaveManager.recover).mockResolvedValue(null);
+    const ok = await useProjectStore
+      .getState()
+      .recoverFromAutoSave("no-existe");
+    expect(ok).toBe(false);
+  });
+
+  it("restaura el item sin blob (offline) si loadMediaBlob no encuentra nada, sin romper la recuperacion", async () => {
+    const recoveredProject: Project = {
+      ...baseProject,
+      mediaLibrary: { items: [makeMediaItem("missing-media")] },
+    };
+    vi.mocked(autoSaveManager.recover).mockResolvedValue(recoveredProject);
+    vi.mocked(loadMediaBlob).mockResolvedValue(null);
+
+    const ok = await useProjectStore.getState().recoverFromAutoSave("save-2");
+
+    expect(ok).toBe(true);
+    const restoredItem = useProjectStore
+      .getState()
+      .project.mediaLibrary.items.find((item) => item.id === "missing-media");
+    expect(restoredItem?.blob).toBeNull();
   });
 });

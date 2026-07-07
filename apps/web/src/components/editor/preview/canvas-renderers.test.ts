@@ -57,6 +57,50 @@ describe("getAnimatedTransform", () => {
       expect(result.position.y).toBe(150);
     }
   });
+
+  describe("crop-path keyframes (reframe animado)", () => {
+    it("interpolates crop.x/y/width/height independently", () => {
+      const keyframes: Keyframe[] = [
+        { id: "1", property: "crop.x", time: 0, value: 0, easing: "linear" },
+        { id: "2", property: "crop.x", time: 1, value: 0.5, easing: "linear" },
+        { id: "3", property: "crop.width", time: 0, value: 1, easing: "linear" },
+        { id: "4", property: "crop.width", time: 1, value: 0.5, easing: "linear" },
+      ];
+
+      const result = getAnimatedTransform(baseTransform, keyframes, 0.5);
+      expect(result.crop?.x).toBeCloseTo(0.25, 5);
+      expect(result.crop?.width).toBeCloseTo(0.75, 5);
+      // y/height sin keyframes propios -> default de "sin recorte" (frame completo)
+      expect(result.crop?.y).toBe(0);
+      expect(result.crop?.height).toBe(1);
+    });
+
+    it("no toca crop cuando no hay keyframes de crop (pass-through del baseTransform)", () => {
+      const keyframes: Keyframe[] = [
+        { id: "1", property: "position.x", time: 0, value: 0, easing: "linear" },
+        { id: "2", property: "position.x", time: 1, value: 100, easing: "linear" },
+      ];
+      const result = getAnimatedTransform(baseTransform, keyframes, 0.5);
+      expect(result.crop).toBeUndefined();
+    });
+
+    it("parte de un crop base existente si el clip ya tenia un recorte manual", () => {
+      const transformWithCrop: ClipTransform = {
+        ...baseTransform,
+        crop: { x: 0.1, y: 0.2, width: 0.6, height: 0.6 },
+      };
+      const keyframes: Keyframe[] = [
+        { id: "1", property: "crop.x", time: 0, value: 0.1, easing: "linear" },
+        { id: "2", property: "crop.x", time: 1, value: 0.3, easing: "linear" },
+      ];
+      const result = getAnimatedTransform(transformWithCrop, keyframes, 0.5);
+      expect(result.crop?.x).toBeCloseTo(0.2, 5);
+      // y/width/height sin keyframes propios conservan el crop base, no el default 0/1
+      expect(result.crop?.y).toBe(0.2);
+      expect(result.crop?.width).toBe(0.6);
+      expect(result.crop?.height).toBe(0.6);
+    });
+  });
 });
 
 describe("Transform Coordinate System", () => {

@@ -66,7 +66,7 @@ import {
 import {
   saveMediaBlob,
   deleteMediaBlob,
-  loadProjectMedia,
+  loadMediaBlob,
   loadFileHandle,
   loadDirectoryHandle,
 } from "../services/media-storage";
@@ -4119,13 +4119,20 @@ export const useProjectStore = create<ProjectState>()(
       recoverFromAutoSave: async (saveId: string) => {
         const recoveredProject = await autoSaveManager.recover(saveId);
         if (recoveredProject) {
-          const storedMedia = await loadProjectMedia(recoveredProject.id);
-          const blobMap = new Map(storedMedia.map((m) => [m.id, m.blob]));
-
+          // Busqueda directa por mediaId (item.id), NO por el indice
+          // projectId de MediaRecord: ese indice es de propietario UNICO
+          // (el ultimo Project que guardo ese mediaId "gana" el indice), asi
+          // que si este mediaId tambien es usado por otro proyecto hermano
+          // (p.ej. los N proyectos del Generador de Clips compartiendo el
+          // mismo video fuente), buscar por projectId aqui podia devolver 0
+          // resultados y dejar la recuperacion sin sus blobs — aunque el
+          // blob siga existiendo en storage. Mismo patron ya usado por
+          // AssetsPanel/ProjectSerializer.restoreMediaBlobs.
           const restoredItems = await Promise.all(
-            recoveredProject.mediaLibrary.items.map((item) =>
-              restoreMediaItem(item, blobMap.get(item.id)),
-            ),
+            recoveredProject.mediaLibrary.items.map(async (item) => {
+              const blob = await loadMediaBlob(item.id);
+              return restoreMediaItem(item, blob ?? undefined);
+            }),
           );
 
           const projectWithMedia: Project = {
